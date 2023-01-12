@@ -13,6 +13,6 @@ if (app.Environment.IsDevelopment()) {
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.MapControllers();
-app.MapGet("/", () => "Hello World!");
+app.MapGet("/", () => "Hello Kity!");
 
 app.Run();
