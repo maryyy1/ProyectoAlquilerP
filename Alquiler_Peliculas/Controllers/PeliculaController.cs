@@ -1,6 +1,6 @@
-﻿using Alquiler_Peliculas.Entities;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Ms.Pelicula.Dominio.Entidades;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
 

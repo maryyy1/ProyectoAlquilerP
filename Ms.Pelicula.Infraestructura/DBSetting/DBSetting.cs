@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Ms.Pelicula.Infraestructura.DBSetting
 {
-    internal class DBSetting : IDBSettings
+    public class DBSetting : IDBSettings
     {
         public string Server { get; set; }
         public string Database { get; set; }

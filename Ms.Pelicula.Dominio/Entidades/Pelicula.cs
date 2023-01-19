@@ -12,14 +12,14 @@ namespace Ms.Pelicula.Dominio.Entidades
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
+        public string _id { get; set; }
+
         public int IdPelicula { get; set; }
-        [Required]
+
         public string Nombre { get; set; }
-        [Required]
+
         public string Duracion { get; set; }
-        [Required]
+
         public double Precio { get; set; }
-        [Required]
-        public Director Director { get; set; }
     }
 }
