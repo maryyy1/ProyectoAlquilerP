@@ -14,5 +14,11 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Ms.Pelicula.Aplicacion\Ms.Pelicula.Aplicacion.csproj" />
+    <ProjectReference Include="..\Ms.Pelicula.Dominio\Ms.Pelicula.Dominio.csproj" />
+    <ProjectReference Include="..\Ms.Pelicula.Infraestructura\Ms.Pelicula.Infraestructura.csproj" />
+  </ItemGroup>
+
 
 </Project>

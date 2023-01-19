@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime;
 using System.Threading.Tasks;
+using Ms.Pelicula.Infraestructura.DBSetting;
 
 namespace Alquiler_Peliculas
 {
@@ -29,8 +30,8 @@ namespace Alquiler_Peliculas
             services.AddControllers();
             services.AddSwaggerGen();
 
-            services.configure<dbsettings>(configuration.getsection("dbsettings"));
-            services.AddSingleton<IDBSettings>(x => x.GetRequiredService<IOptions<DBSettings>>().Value);
+            services.Configure<DBSetting>(Configuration.GetSection("DBSetting"));
+            services.AddSingleton<IDBSettings>(x => x.GetRequiredService<IOptions<DBSetting>>().Value);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

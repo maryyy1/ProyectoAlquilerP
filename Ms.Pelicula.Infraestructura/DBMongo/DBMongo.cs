@@ -13,7 +13,7 @@ namespace Ms.Pelicula.Infraestructura.DBMongo
         public DBMongo()
         {
             client = new MongoClient("mongodb://localhost:27017");
-            db = client.GetDatabase("TDB_productos");
+            db = client.GetDatabase("DB_Pelicula");
         }
     }
 }
