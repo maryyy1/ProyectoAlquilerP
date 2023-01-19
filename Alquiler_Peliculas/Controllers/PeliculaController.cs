@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Ms.Pelicula.Aplicacion.Pelicula.Read;
-using Ms.Pelicula.Dominio.Entidades;
 using System.Collections.Generic;
-using System.Reflection.Metadata.Ecma335;
 using static Ms.Pelicula.Api.Routes.ApiRoutes;
 using dominio = Ms.Pelicula.Dominio.Entidades; 
 

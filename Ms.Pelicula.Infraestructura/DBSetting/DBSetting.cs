@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Ms.Pelicula.Infraestructura.DBSetting
+﻿namespace Ms.Pelicula.Infraestructura.DBSetting
 {
     public class DBSetting : IDBSettings
     {

@@ -1,8 +1,6 @@
 ﻿using MongoDB.Driver;
 using Ms.Pelicula.Infraestructura.DBSetting;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using dominio = Ms.Pelicula.Dominio.Entidades;
 
 namespace Ms.Pelicula.Dominio.Servicios

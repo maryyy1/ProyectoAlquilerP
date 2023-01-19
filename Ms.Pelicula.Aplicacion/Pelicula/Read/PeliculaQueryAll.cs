@@ -1,7 +1,5 @@
 ﻿using MongoDB.Driver;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Ms.Pelicula.Infraestructura.DBMongo;
 using dominio = Ms.Pelicula.Dominio.Entidades;
 

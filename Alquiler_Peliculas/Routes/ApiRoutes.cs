@@ -16,7 +16,6 @@
             public const string Create = Base + "/producto/create";
             public const string Update = Base + "/producto/update";
             public const string Delete = Base + "/producto/delete";
-
         }
     }
 }
