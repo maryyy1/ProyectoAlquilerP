@@ -4,4 +4,13 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.18.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ms.Pelicula.Dominio\Ms.Pelicula.Dominio.csproj" />
+    <ProjectReference Include="..\Ms.Pelicula.Infraestructura\Ms.Pelicula.Infraestructura.csproj" />
+  </ItemGroup>
+
 </Project>
