@@ -14,7 +14,7 @@ namespace Ms.Pelicula.Aplicacion.Pelicula.Read
 
         public PeliculaQueryAll()
         {
-            _pelicula = _mongo.db.GetCollection<dominio.Pelicula>("pelicula");
+            _pelicula = _mongo.db.GetCollection<dominio.Pelicula>("Pelicula");
         }
 
         public IEnumerable<dominio.Pelicula> ListarPeliculas()

@@ -7,7 +7,7 @@ using Ms.Pelicula.Dominio.Entidades;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
 using static Ms.Pelicula.Api.Routes.ApiRoutes;
-using dominio = Ms.Pelicula.Dominio.Entidades;
+using dominio = Ms.Pelicula.Dominio.Entidades; 
 
 namespace Alquiler_Peliculas.Controllers
 {

@@ -5,14 +5,15 @@ using System.Collections.Generic;
 using System.Text;
 using dominio = Ms.Pelicula.Dominio.Entidades;
 
-namespace Ms.Pelicula.Aplicacion.Pelicula.Read
+namespace Ms.Pelicula.Aplicacion.Director.Read
 {
     public class DirectorQueryAll
     {
         internal DBMongo _mongo = new DBMongo();
         private IMongoCollection<dominio.Director> _director;
 
-        public DirectorQueryAll(){
+        public DirectorQueryAll()
+        {
             _director = _mongo.db.GetCollection<dominio.Director>("director");
         }
 
