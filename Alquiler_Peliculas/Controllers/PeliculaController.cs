@@ -1,8 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using Ms.Pelicula.Aplicacion.Pelicula.Read;
 using Ms.Pelicula.Dominio.Entidades;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
+using static Ms.Pelicula.Api.Routes.ApiRoutes;
+using dominio = Ms.Pelicula.Dominio.Entidades;
 
 namespace Alquiler_Peliculas.Controllers
 {
@@ -10,36 +15,70 @@ namespace Alquiler_Peliculas.Controllers
     [Route("Alquiler")]
     public class PeliculaController : ControllerBase
     {
-        private static List<Pelicula> ListaPelicula = new List<Pelicula>
-        {
-            new Pelicula
-            {
-                IdPelicula = 1,
-                Nombre = "El hombre que araña",
-                Duracion = "2h",
-                Precio = 12
-            },
+        private PeliculaQueryAll db = new PeliculaQueryAll();
 
-            new Pelicula
-            {
-                IdPelicula = 2,
-                Nombre = "El venon",
-                Duracion = "2h 30min",
-                Precio = 15
-            }
-        };
-        /*
-        [HttpGet(Name = "BuscarPelicula")]
-        public Pelicula BuscarPelicula(int id)
+        [HttpGet(RoutePelicula.GetAll)]
+        public IEnumerable<dominio.Pelicula> ListarPeliculas()
         {
-            return ListaPelicula.Single(x => x.IdPelicula == id);
+            var listaPelicula = db.ListarPeliculas();
+            return listaPelicula;
         }
-        */
 
-        [HttpGet(Name = "GetPelicula")]
-        public IEnumerable<Pelicula> Get()
+        [HttpGet(RoutePelicula.GetById)]
+        public dominio.Pelicula BuscarPelicula(int id)
         {
-            return ListaPelicula;
+            #region Conexión a base de datos
+            var client = new MongoClient("mongodb://localhost:27017");
+            var database = client.GetDatabase("DB_Pelicula");
+            var collection = database.GetCollection<dominio.Pelicula>("Pelicula");
+            #endregion
+
+            var objPelicula = collection.Find(x => x.IdPelicula == id).FirstOrDefault();
+
+            return objPelicula;
+        }
+
+        [HttpPost(RoutePelicula.Create)]
+        public ActionResult<dominio.Pelicula> CrearPelicula(dominio.Pelicula pelicula)
+        {
+            #region Conexión a base de datos
+            var client = new MongoClient("mongodb://localhost:27017");
+            var database = client.GetDatabase("DB_Pelicula");
+            var collection = database.GetCollection<dominio.Pelicula>("Pelicula");
+            #endregion
+
+            pelicula._id = ObjectId.GenerateNewId().ToString();
+            collection.InsertOne(pelicula);
+
+            return Ok();
+        }
+
+        [HttpPut(RoutePelicula.Update)]
+        public ActionResult<dominio.Pelicula> ModificarPelicula(dominio.Pelicula pelicula)
+        {
+            #region Conexión a base de datos
+            var client = new MongoClient("mongodb://localhost:27017");
+            var database = client.GetDatabase("DB_Pelicula");
+            var collection = database.GetCollection<dominio.Pelicula>("Pelicula");
+            #endregion
+
+            collection.FindOneAndReplace(x => x._id == pelicula._id, pelicula);
+
+            return Ok();
+        }
+
+        [HttpDelete(RoutePelicula.Delete)]
+        public ActionResult<dominio.Pelicula> EliminarPelicula(int id)
+        {
+            #region Conexión a base de datos
+            var client = new MongoClient("mongodb://localhost:27017");
+            var database = client.GetDatabase("DB_Pelicula");
+            var collection = database.GetCollection<dominio.Pelicula>("Pelicula");
+            #endregion
+
+            collection.FindOneAndDelete(x => x.IdPelicula == id);
+
+            return Ok(id);
         }
     }
 }
