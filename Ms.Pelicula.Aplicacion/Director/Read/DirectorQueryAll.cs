@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using Ms.Pelicula.Infraestructura.DBMongo;
+using System;
 using System.Collections.Generic;
 using dominio = Ms.Pelicula.Dominio.Entidades;
 
@@ -12,8 +13,10 @@ namespace Ms.Pelicula.Aplicacion.Director.Read
 
         public DirectorQueryAll()
         {
-            _director = _mongo.db.GetCollection<dominio.Director>("director");
+            _director = _mongo.db.GetCollection<dominio.Director>("Director");
         }
+
+        
 
         public IEnumerable<dominio.Director> ListarDirectores()
         {
