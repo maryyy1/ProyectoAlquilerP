@@ -17,5 +17,17 @@
             public const string Update = Base + "/producto/update";
             public const string Delete = Base + "/producto/delete";
         }
+
+        public static class RouteDirector
+        {
+            // Read
+            public const string GetAll = Base + "/director/all";
+            public const string GetById = Base + "/director/{id}";
+
+            // Write
+            public const string Create = Base + "/director/create";
+            public const string Update = Base + "/director/update";
+            public const string Delete = Base + "/director/delete";
+        }
     }
 }

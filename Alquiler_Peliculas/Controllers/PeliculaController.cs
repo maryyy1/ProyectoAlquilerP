@@ -9,7 +9,7 @@ using dominio = Ms.Pelicula.Dominio.Entidades;
 namespace Alquiler_Peliculas.Controllers
 {
     [ApiController]
-    [Route("Alquiler")]
+    [Route("Pelicula")]
     public class PeliculaController : ControllerBase
     {
         private PeliculaQueryAll db = new PeliculaQueryAll();
