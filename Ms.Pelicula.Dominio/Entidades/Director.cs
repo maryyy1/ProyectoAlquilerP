@@ -17,6 +17,6 @@ namespace Ms.Pelicula.Dominio.Entidades
 
         public string ApeMaterno { get; set; }
 
-        public int Sexo { get; set; }
+        public string Sexo { get; set; }
     }
 }
