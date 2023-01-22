@@ -19,5 +19,10 @@ namespace Ms.Pelicula.Aplicacion.Pelicula.Read
         {
             return _pelicula.Find(x => true).ToList();
         }
+
+        public IMongoCollection<dominio.Pelicula> Coleccion()
+        {
+            return _pelicula;
+        }
     }
 }
