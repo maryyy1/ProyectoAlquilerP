@@ -5,49 +5,50 @@ using MongoDB.Driver;
 using Ms.Pelicula.Aplicacion.Director.Read;
 using System.Collections.Generic;
 using dominio = Ms.Pelicula.Dominio.Entidades;
+using Ms.Pelicula.Api.Routes;
+using System.Security.Cryptography;
 
 namespace Ms.Pelicula.Api.Controllers
 {
     [ApiController]    
-        [HttpGet(ApiRoutes.RouteDirector.GetAll)]
     public class DirectorController : ControllerBase
     {
         private DirectorQueryAll db = new DirectorQueryAll();   
-        [HttpGet(RouteDirector.GetAll)]
+        [HttpGet(ApiRoutes.RouteDirector.GetAll)]
         public IEnumerable<dominio.Director> ListarDirector()
         {
             var listaDirector = db.ListarDirectores();
             return listaDirector;
         }
+
+        [HttpGet(ApiRoutes.RouteDirector.GetById)]
+        public dominio.Director BuscarDirector(int id)
+        {
             var objDirector = db.Coleccion().Find(x => x.IdDirector == id).FirstOrDefault();
-            #endregion
-
-            var objDirector = collection.Find(x => x.IdDirector == id).FirstOrDefault();
-
             return objDirector;
         }
 
-            db.Coleccion().InsertOne(director);
+        [HttpPost(ApiRoutes.RouteDirector.Create)]
+        public ActionResult<dominio.Director> CrearDirector(dominio.Director director)
         {
             director._id = ObjectId.GenerateNewId().ToString();
-            collection.InsertOne(director);
-
+            db.Coleccion().InsertOne(director);
             return Ok();
         }
+
+        [HttpPut(ApiRoutes.RouteDirector.Update)]
+        public ActionResult<dominio.Director> ModificarDirector(dominio.Director director)
+        {
             var objDirector = db.Coleccion().Find(x => x.IdDirector == director.IdDirector).FirstOrDefault();
             director._id = objDirector._id;
             db.Coleccion().FindOneAndReplace(x => x._id == director._id, director);
-            #endregion
-
-            collection.FindOneAndReplace(x => x._id == director._id, director);
-
             return Ok();
         }
+
+        [HttpDelete(ApiRoutes.RouteDirector.Delete)]
+        public ActionResult<dominio.Director> EliminarDirector(int id)
+        {
             db.Coleccion().FindOneAndDelete(x => x.IdDirector == id);
-            #endregion
-
-            collection.FindOneAndDelete(x => x.IdDirector == id);
-
             return Ok(id);
         }
     }
