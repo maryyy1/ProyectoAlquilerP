@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using Ms.Pelicula.Api.Routes;
 using Ms.Pelicula.Aplicacion.Pelicula.Read;
 using System.Collections.Generic;
-using static Ms.Pelicula.Api.Routes.ApiRoutes;
 using dominio = Ms.Pelicula.Dominio.Entidades; 
 
 namespace Alquiler_Peliculas.Controllers
@@ -14,14 +14,14 @@ namespace Alquiler_Peliculas.Controllers
     {
         private PeliculaQueryAll db = new PeliculaQueryAll();
 
-        [HttpGet(RoutePelicula.GetAll)]
+        [HttpGet(ApiRoutes.RoutePelicula.GetAll)]
         public IEnumerable<dominio.Pelicula> ListarPeliculas()
         {
             var listaPelicula = db.ListarPeliculas();
             return listaPelicula;
         }
 
-        [HttpGet(RoutePelicula.GetById)]
+        [HttpGet(ApiRoutes.RoutePelicula.GetById)]
         public dominio.Pelicula BuscarPelicula(int id)
         {
             #region Conexión a base de datos
@@ -35,7 +35,7 @@ namespace Alquiler_Peliculas.Controllers
             return objPelicula;
         }
 
-        [HttpPost(RoutePelicula.Create)]
+        [HttpPost(ApiRoutes.RoutePelicula.Create)]
         public ActionResult<dominio.Pelicula> CrearPelicula(dominio.Pelicula pelicula)
         {
             #region Conexión a base de datos
@@ -50,7 +50,7 @@ namespace Alquiler_Peliculas.Controllers
             return Ok();
         }
 
-        [HttpPut(RoutePelicula.Update)]
+        [HttpPut(ApiRoutes.RoutePelicula.Update)]
         public ActionResult<dominio.Pelicula> ModificarPelicula(dominio.Pelicula pelicula)
         {
             #region Conexión a base de datos
@@ -64,7 +64,7 @@ namespace Alquiler_Peliculas.Controllers
             return Ok();
         }
 
-        [HttpDelete(RoutePelicula.Delete)]
+        [HttpDelete(ApiRoutes.RoutePelicula.Delete)]
         public ActionResult<dominio.Pelicula> EliminarPelicula(int id)
         {
             #region Conexión a base de datos
