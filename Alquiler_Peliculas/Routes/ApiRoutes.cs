@@ -29,5 +29,17 @@
             public const string Update = Base + "/director/update";
             public const string Delete = Base + "/director/delete";
         }
+
+        public static class RouteCliente
+        {
+            // Read
+            public const string GetAll = Base + "/cliente/all";
+            public const string GetById = Base + "/cliente/{id}";
+
+            // Write
+            public const string Create = Base + "/cliente/create";
+            public const string Update = Base + "/cliente/update";
+            public const string Delete = Base + "/cliente/delete";
+        }
     }
 }

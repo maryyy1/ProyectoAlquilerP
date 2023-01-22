@@ -1,29 +1,29 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Ms.Pelicula.Aplicacion.Director.Read;
+using dominio = Ms.Pelicula.Dominio.Entidades;
+using Ms.Pelicula.Api.Routes;
+using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
-using Ms.Pelicula.Api.Routes;
-using Ms.Pelicula.Aplicacion.Director.Read;
-using System.Collections.Generic;
-using dominio = Ms.Pelicula.Dominio.Entidades;
 
 namespace Ms.Pelicula.Api.Controllers
 {
-    [ApiController]    
-    public class DirectorController : ControllerBase
+    [ApiController]
+    public class ClienteController : ControllerBase
     {
-        private DirectorQueryAll db = new DirectorQueryAll();   
+        private DirectorQueryAll dqa = new DirectorQueryAll();
+
         [HttpGet(ApiRoutes.RouteDirector.GetAll)]
-        public IEnumerable<dominio.Director> ListarDirector()
+        public IEnumerable<dominio.Director> ListarDirectores()
         {
-            var listaDirector = db.ListarDirectores();
+            var listaDirector = dqa.ListarDirectores(); 
             return listaDirector;
         }
 
         [HttpGet(ApiRoutes.RouteDirector.GetById)]
         public dominio.Director BuscarDirector(int id)
         {
-            var objDirector = db.Coleccion().Find(x => x.IdDirector == id).FirstOrDefault();
+            var objDirector = dqa.Coleccion().Find(x => x.IdDirector == id).FirstOrDefault();
             return objDirector;
         }
 
@@ -31,23 +31,23 @@ namespace Ms.Pelicula.Api.Controllers
         public ActionResult<dominio.Director> CrearDirector(dominio.Director director)
         {
             director._id = ObjectId.GenerateNewId().ToString();
-            db.Coleccion().InsertOne(director);
+            dqa.Coleccion().InsertOne(director);
             return Ok();
         }
 
         [HttpPut(ApiRoutes.RouteDirector.Update)]
         public ActionResult<dominio.Director> ModificarDirector(dominio.Director director)
         {
-            var objDirector = db.Coleccion().Find(x => x.IdDirector == director.IdDirector).FirstOrDefault();
+            var objDirector = dqa.Coleccion().Find(x => x.IdDirector == director.IdDirector).FirstOrDefault();
             director._id = objDirector._id;
-            db.Coleccion().FindOneAndReplace(x => x._id == director._id, director);
+            dqa.Coleccion().FindOneAndReplace(x => x._id == director._id, director);
             return Ok();
         }
 
         [HttpDelete(ApiRoutes.RouteDirector.Delete)]
         public ActionResult<dominio.Director> EliminarDirector(int id)
         {
-            db.Coleccion().FindOneAndDelete(x => x.IdDirector == id);
+            dqa.Coleccion().FindOneAndDelete(x => x.IdDirector == id);
             return Ok(id);
         }
     }

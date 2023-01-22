@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using Ms.Pelicula.Dominio.Entidades;
 using Ms.Pelicula.Infraestructura.DBMongo;
 using System;
 using System.Collections.Generic;
@@ -16,11 +17,14 @@ namespace Ms.Pelicula.Aplicacion.Director.Read
             _director = _mongo.db.GetCollection<dominio.Director>("Director");
         }
 
-        
-
         public IEnumerable<dominio.Director> ListarDirectores()
         {
             return _director.Find(x => true).ToList();
+        }
+
+        public IMongoCollection<dominio.Director> Coleccion()
+        {
+            return _director;
         }
     }
 }
