@@ -9,13 +9,13 @@
         public static class RoutePelicula
         {
             // Read
-            public const string GetAll = Base + "/producto/all";
-            public const string GetById = Base + "/producto/{id}";
+            public const string GetAll = Base + "/pelicula/all";
+            public const string GetById = Base + "/pelicula/{id}";
 
             // Write
-            public const string Create = Base + "/producto/create";
-            public const string Update = Base + "/producto/update";
-            public const string Delete = Base + "/producto/delete";
+            public const string Create = Base + "/pelicula/create";
+            public const string Update = Base + "/pelicula/update";
+            public const string Delete = Base + "/pelicula/delete";
         }
 
         public static class RouteDirector
