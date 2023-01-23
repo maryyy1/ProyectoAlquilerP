@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Pelicula.Api", "Alquiler_Peliculas\Ms.Pelicula.Api.csproj", "{9977BF0C-EC19-433C-952A-3233727C3F3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Pelicula.Api", "Ms.Pelicula.Api\Ms.Pelicula.Api.csproj", "{9977BF0C-EC19-433C-952A-3233727C3F3E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Pelicula.Infraestructura", "Ms.Pelicula.Infraestructura\Ms.Pelicula.Infraestructura.csproj", "{E3898A0C-A88A-48E7-B827-AEA84E68839F}"
 EndProject
@@ -11,13 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Pelicula.Dominio", "Ms.P
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Pelicula.Aplicacion", "Ms.Pelicula.Aplicacion\Ms.Pelicula.Aplicacion.csproj", "{CCF3C433-3818-497B-A1C8-E615BE37D29F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ms.Cliente.Api", "Ms.Cliente.Api\Ms.Cliente.Api.csproj", "{B7EC9434-B305-45ED-A114-1B4FCA012EA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Cliente.Api", "Ms.Cliente.Api\Ms.Cliente.Api.csproj", "{B7EC9434-B305-45ED-A114-1B4FCA012EA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ms.Cliente.Dominio", "Ms.Cliente.Dominio\Ms.Cliente.Dominio.csproj", "{1EBA596C-5D1E-4C2C-8AB2-9CE6DEA48217}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Cliente.Dominio", "Ms.Cliente.Dominio\Ms.Cliente.Dominio.csproj", "{1EBA596C-5D1E-4C2C-8AB2-9CE6DEA48217}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ms.Cliente.Aplicacion", "Ms.Cliente.Aplicacion\Ms.Cliente.Aplicacion.csproj", "{BA30B8B5-D1B5-450A-B21F-8B50ECD52190}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Cliente.Aplicacion", "Ms.Cliente.Aplicacion\Ms.Cliente.Aplicacion.csproj", "{BA30B8B5-D1B5-450A-B21F-8B50ECD52190}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ms.Cliente.Infraestructura", "Ms.Cliente.Infraestructura\Ms.Cliente.Infraestructura.csproj", "{BFDF5DCD-DC2A-49E9-B8D1-B64B5B86F313}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Cliente.Infraestructura", "Ms.Cliente.Infraestructura\Ms.Cliente.Infraestructura.csproj", "{BFDF5DCD-DC2A-49E9-B8D1-B64B5B86F313}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
