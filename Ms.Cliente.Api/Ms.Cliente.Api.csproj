@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.18.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ms.Cliente.Aplicacion\Ms.Cliente.Aplicacion.csproj" />
+    <ProjectReference Include="..\Ms.Cliente.Dominio\Ms.Cliente.Dominio.csproj" />
+    <ProjectReference Include="..\Ms.Cliente.Infraestructura\Ms.Cliente.Infraestructura.csproj" />
+  </ItemGroup>
+
+
+</Project>
