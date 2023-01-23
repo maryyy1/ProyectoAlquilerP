@@ -1,19 +1,18 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using Ms.Pelicula.Aplicacion.Director.Read;
 using System.Collections.Generic;
 using dominio = Ms.Pelicula.Dominio.Entidades;
 using Ms.Pelicula.Api.Routes;
-using System.Security.Cryptography;
 
 namespace Ms.Pelicula.Api.Controllers
 {
     [ApiController]    
     public class DirectorController : ControllerBase
     {
-        private DirectorQueryAll db = new DirectorQueryAll();   
+        private DirectorQueryAll db = new DirectorQueryAll();
+        
         [HttpGet(ApiRoutes.RouteDirector.GetAll)]
         public IEnumerable<dominio.Director> ListarDirector()
         {

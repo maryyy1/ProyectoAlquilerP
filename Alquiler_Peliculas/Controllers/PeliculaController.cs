@@ -4,7 +4,7 @@ using MongoDB.Driver;
 using Ms.Pelicula.Api.Routes;
 using Ms.Pelicula.Aplicacion.Pelicula.Read;
 using System.Collections.Generic;
-using dominio = Ms.Pelicula.Dominio.Entidades; 
+using dominio = Ms.Pelicula.Dominio.Entidades;
 
 namespace Alquiler_Peliculas.Controllers
 {
