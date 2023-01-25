@@ -3,21 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Pelicula.Api", "Ms.Pelicula.Api\Ms.Pelicula.Api.csproj", "{9977BF0C-EC19-433C-952A-3233727C3F3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Pelicula.Api", "MsPelicula\Ms.Pelicula.Api\Ms.Pelicula.Api.csproj", "{9977BF0C-EC19-433C-952A-3233727C3F3E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Pelicula.Infraestructura", "Ms.Pelicula.Infraestructura\Ms.Pelicula.Infraestructura.csproj", "{E3898A0C-A88A-48E7-B827-AEA84E68839F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Pelicula.Infraestructura", "MsPelicula\Ms.Pelicula.Infraestructura\Ms.Pelicula.Infraestructura.csproj", "{E3898A0C-A88A-48E7-B827-AEA84E68839F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Pelicula.Dominio", "Ms.Pelicula.Dominio\Ms.Pelicula.Dominio.csproj", "{F62708E0-1785-47CA-AB7D-9FB6FE263072}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Pelicula.Dominio", "MsPelicula\Ms.Pelicula.Dominio\Ms.Pelicula.Dominio.csproj", "{F62708E0-1785-47CA-AB7D-9FB6FE263072}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Pelicula.Aplicacion", "Ms.Pelicula.Aplicacion\Ms.Pelicula.Aplicacion.csproj", "{CCF3C433-3818-497B-A1C8-E615BE37D29F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Pelicula.Aplicacion", "MsPelicula\Ms.Pelicula.Aplicacion\Ms.Pelicula.Aplicacion.csproj", "{CCF3C433-3818-497B-A1C8-E615BE37D29F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Cliente.Api", "Ms.Cliente.Api\Ms.Cliente.Api.csproj", "{B7EC9434-B305-45ED-A114-1B4FCA012EA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Cliente.Api", "MsCliente\Ms.Cliente.Api\Ms.Cliente.Api.csproj", "{B7EC9434-B305-45ED-A114-1B4FCA012EA1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Cliente.Dominio", "Ms.Cliente.Dominio\Ms.Cliente.Dominio.csproj", "{1EBA596C-5D1E-4C2C-8AB2-9CE6DEA48217}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Cliente.Dominio", "MsCliente\Ms.Cliente.Dominio\Ms.Cliente.Dominio.csproj", "{1EBA596C-5D1E-4C2C-8AB2-9CE6DEA48217}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Cliente.Aplicacion", "Ms.Cliente.Aplicacion\Ms.Cliente.Aplicacion.csproj", "{BA30B8B5-D1B5-450A-B21F-8B50ECD52190}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Cliente.Aplicacion", "MsCliente\Ms.Cliente.Aplicacion\Ms.Cliente.Aplicacion.csproj", "{BA30B8B5-D1B5-450A-B21F-8B50ECD52190}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Cliente.Infraestructura", "Ms.Cliente.Infraestructura\Ms.Cliente.Infraestructura.csproj", "{BFDF5DCD-DC2A-49E9-B8D1-B64B5B86F313}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Cliente.Infraestructura", "MsCliente\Ms.Cliente.Infraestructura\Ms.Cliente.Infraestructura.csproj", "{BFDF5DCD-DC2A-49E9-B8D1-B64B5B86F313}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
