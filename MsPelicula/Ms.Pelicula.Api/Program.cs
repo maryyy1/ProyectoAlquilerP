@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Alquiler_Peliculas
+namespace Ms.Pelicula.Api
 {
     public class Program
     {

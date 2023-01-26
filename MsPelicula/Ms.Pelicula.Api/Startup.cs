@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
-using Ms.Pelicula.Infraestructura.DBSetting;
+using Ms.Pelicula.Aplicacion;
 
-namespace Alquiler_Peliculas
+namespace Ms.Pelicula.Api
 {
     public class Startup
     {
@@ -22,9 +22,7 @@ namespace Alquiler_Peliculas
         {
             services.AddControllers();
             services.AddSwaggerGen();
-
-            services.Configure<DBSetting>(Configuration.GetSection("DBSetting"));
-            services.AddSingleton<IDBSettings>(x => x.GetRequiredService<IOptions<DBSetting>>().Value);
+            services.AddAplicacion(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,6 +42,12 @@ namespace Alquiler_Peliculas
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGet("/",
+                   async context =>
+                   {
+                       string color = env.IsDevelopment() ? "Gray" : "Green";
+                       await context.Response.WriteAsync($"<h1 style='color:{color};'>[MS.Api] Environment: <a href='/swagger'>{env.EnvironmentName}</a></h1>");
+                   });
             });
         }
     }

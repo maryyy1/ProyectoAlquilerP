@@ -5,17 +5,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Director\Write\**" />
+    <Compile Remove="Pelicula\Write\**" />
+    <EmbeddedResource Remove="Director\Write\**" />
+    <EmbeddedResource Remove="Pelicula\Write\**" />
+    <None Remove="Director\Write\**" />
+    <None Remove="Pelicula\Write\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.18.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Ms.Pelicula.Dominio\Ms.Pelicula.Dominio.csproj" />
     <ProjectReference Include="..\Ms.Pelicula.Infraestructura\Ms.Pelicula.Infraestructura.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Director\Write\" />
-    <Folder Include="Pelicula\Write\" />
   </ItemGroup>
 
 </Project>

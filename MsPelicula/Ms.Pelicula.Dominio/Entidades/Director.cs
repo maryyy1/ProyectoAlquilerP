@@ -1,14 +1,14 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
+using Release.MongoDB.Repository;
+using Release.MongoDB.Repository.Model;
 
 namespace Ms.Pelicula.Dominio.Entidades
 {
-    public class Director
-    {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string _id { get; set; }
-
+    [CollectionProperty("Director")]
+    [BsonIgnoreExtraElements]
+    public class Director : EntityToLower<ObjectId>
+    { 
         public int IdDirector { get; set; }
 
         public string Nombre { get; set; }

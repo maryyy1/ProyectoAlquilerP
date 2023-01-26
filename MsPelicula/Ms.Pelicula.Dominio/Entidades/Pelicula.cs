@@ -1,15 +1,14 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Release.MongoDB.Repository;
+using Release.MongoDB.Repository.Model;
 
 namespace Ms.Pelicula.Dominio.Entidades
 {
+    [CollectionProperty("Pelicula")]
     [BsonIgnoreExtraElements]
-    public class Pelicula
+    public class Pelicula : EntityToLower<ObjectId>
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string _id { get; set; }
-
         public int IdPelicula { get; set; }
 
         public string Nombre { get; set; }
