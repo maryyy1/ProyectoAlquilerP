@@ -1,18 +1,14 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Release.MongoDB.Repository;
+using Release.MongoDB.Repository.Model;
 
 namespace Ms.Cliente.Dominio.Entidades
 {
+    [CollectionProperty("Tarjeta")]
     [BsonIgnoreExtraElements]
-    public class Tarjeta
+    public class Tarjeta : EntityToLower<ObjectId>
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string _id { get; set; }
-
         public int IdTarjeta { get; set; }
 
         public string Numero { get; set; }

@@ -1,18 +1,14 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Release.MongoDB.Repository;
+using Release.MongoDB.Repository.Model;
 
 namespace Ms.Cliente.Dominio.Entidades
 {
+    [CollectionProperty("Cliente")]
     [BsonIgnoreExtraElements]
-    public class Cliente
+    public class Cliente : EntityToLower<ObjectId>
     {
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string _id { get; set; }
-
         public int IdCliente { get; set; }
 
         public string Dni { get; set; }

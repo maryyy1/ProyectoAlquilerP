@@ -1,17 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Ms.Cliente.Infraestructura.DBSetting;
+using Ms.Cliente.Aplicacion;
 
 namespace Ms.Cliente.Api
 {
@@ -30,8 +23,7 @@ namespace Ms.Cliente.Api
             services.AddControllers();
             services.AddSwaggerGen();
 
-            services.Configure<DBSetting>(Configuration.GetSection("DBSetting"));
-            services.AddSingleton<IDBSettings>(x => x.GetRequiredService<IOptions<DBSetting>>().Value);
+            services.AddAplicacion(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +45,12 @@ namespace Ms.Cliente.Api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapGet("/",
+                   async context =>
+                   {
+                       string color = env.IsDevelopment() ? "Gray" : "Green";
+                       await context.Response.WriteAsync($"<h1 style='color:{color};'>[MS.Api] Environment: <a href='/swagger'>{env.EnvironmentName}</a></h1>");
+                   });
             });
         }
     }

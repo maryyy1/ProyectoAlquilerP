@@ -22,6 +22,7 @@ namespace Ms.Pelicula.Api
         {
             services.AddControllers();
             services.AddSwaggerGen();
+
             services.AddAplicacion(Configuration);
         }
 

@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using Ms.Cliente.Api.Routes;
 using Ms.Cliente.Aplicacion.Cliente;
 using System.Collections.Generic;
 using static Ms.Cliente.Api.Routes.ApiRoutes;
@@ -12,7 +9,6 @@ namespace Ms.Pelicula.Api.Controllers
     [ApiController]
     public class ClienteController : ControllerBase
     {
-        //private PeliculaQueryAll db = new PeliculaQueryAll();
         private readonly IClienteService _service;
 
         public ClienteController(IClienteService service)
@@ -21,9 +17,9 @@ namespace Ms.Pelicula.Api.Controllers
         }
 
         [HttpGet(RouteCliente.GetAll)]
-        public IEnumerable<dominio.Cliente> ListarCliente ()
+        public IEnumerable<dominio.Cliente> ListarClientes()
         {
-            var listaCliente = _service.ListarCliente();
+            var listaCliente = _service.ListarClientes();
             return listaCliente ;
         }
 
@@ -35,7 +31,7 @@ namespace Ms.Pelicula.Api.Controllers
         }
 
         [HttpPost(RouteCliente.Create)]
-        public ActionResult<dominio.Cliente> CrearPelicula(dominio.Cliente cliente)
+        public ActionResult<dominio.Cliente> CrearCliente(dominio.Cliente cliente)
         {
             _service.RegistrarCliente(cliente);
 

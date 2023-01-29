@@ -1,11 +1,12 @@
 ﻿using MongoDB.Driver;
+using Ms.Cliente.Dominio.Entidades;
 using Release.MongoDB.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using dominio = Ms.Cliente.Dominio.Entidades;
 
-namespace Ms.Cliente.Aplicacion.Cliente
+namespace Ms.Cliente.Aplicacion.Tarjeta
 {
 
     public class TarjetaService : ITarjetaService
@@ -20,7 +21,7 @@ namespace Ms.Cliente.Aplicacion.Cliente
             _tarjetaR = tarjetaR;
         }
 
-        public List<dominio.Tarjeta> ListarTarjeta()
+        public List<dominio.Tarjeta> ListarTarjetas()
         {
             Expression<Func<dominio.Tarjeta, bool>> filter = s => s.esEliminado == false;
             var items = (_tarjeta.Context().FindAsync(filter, null).Result).ToList();
@@ -33,14 +34,12 @@ namespace Ms.Cliente.Aplicacion.Cliente
             tarjeta.fechaCreacion = DateTime.Now;
             tarjeta.esActivo = true;
 
-            // _Pelicula.Context().InsertOne(Pelicula);                       
-
-            var t = _tarjetaR.InsertOne(tarjeta);
+            _tarjetaR.InsertOne(tarjeta);
 
             return true;
         }
 
-        public dominio.Tarjeta Tarjeta(int idTarjeta)
+        public dominio.Tarjeta Tarjeta (int idTarjeta)
         {
             Expression<Func<dominio.Tarjeta, bool>> filter = s => s.esEliminado == false && s.IdTarjeta == idTarjeta;
             var item = (_tarjeta.Context().FindAsync(filter, null).Result).FirstOrDefault();

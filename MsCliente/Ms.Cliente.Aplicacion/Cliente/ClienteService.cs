@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using Release.MongoDB.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -19,7 +20,7 @@ namespace Ms.Cliente.Aplicacion.Cliente
             _clienteR = clienteR;
         }
 
-        public List<dominio.Cliente> ListarCliente()
+        public List<dominio.Cliente> ListarClientes()
         {
             Expression<Func<dominio.Cliente, bool>> filter = s => s.esEliminado == false;
             var items = (_cliente.Context().FindAsync(filter, null).Result).ToList();
@@ -32,9 +33,7 @@ namespace Ms.Cliente.Aplicacion.Cliente
             cliente.fechaCreacion = DateTime.Now;
             cliente.esActivo = true;
 
-            // _Pelicula.Context().InsertOne(Pelicula);                       
-
-            var p = _clienteR.InsertOne(cliente);
+            _clienteR.InsertOne(cliente);
 
             return true;
         }
@@ -46,7 +45,7 @@ namespace Ms.Cliente.Aplicacion.Cliente
             return item;
         }
 
-        public void Eliminar(int idPelicula)
+        public void Eliminar(int idCliente)
         {
             Expression<Func<dominio.Cliente, bool>> filter = s => s.esEliminado == false && s.IdCliente == idCliente;
             var item = (_cliente.Context().FindOneAndDelete(filter, null));

@@ -32,10 +32,7 @@ namespace Ms.Pelicula.Aplicacion.Pelicula
             pelicula.esEliminado = false;
             pelicula.fechaCreacion =DateTime.Now;
             pelicula.esActivo = true;
-
-           // _Pelicula.Context().InsertOne(Pelicula);                       
-
-            var p = _peliculaR.InsertOne(pelicula);
+            _peliculaR.InsertOne(pelicula);
 
             return true;
         }
