@@ -4,5 +4,16 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Release.MongoDB.Repository" Version="1.2.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ms.Alquiler.Aplicacion\Ms.Alquiler.Aplicacion.csproj" />
+    <ProjectReference Include="..\Ms.Alquiler.Dominio\Ms.Alquiler.Dominio.csproj" />
+    <ProjectReference Include="..\Ms.Alquiler.Infraestructura\Ms.Alquiler.Infraestructura.csproj" />
+  </ItemGroup>
+
 
 </Project>
