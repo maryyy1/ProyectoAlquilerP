@@ -6,6 +6,7 @@ using static Ms.Pelicula.Api.Routes.ApiRoutes;
 using System.Collections.Generic;
 using dominio = Ms.Pelicula.Dominio.Entidades;
 using Ms.Pelicula.Api.Routes;
+using System;
 
 namespace Ms.Pelicula.Api.Controllers
 {
@@ -29,8 +30,16 @@ namespace Ms.Pelicula.Api.Controllers
         [HttpGet(RouteDirector.GetById)]
         public dominio.Director BuscarDirector(int id)
         {
-            var objDirector = _service.BuscarDirector(id);
-            return objDirector;
+            try
+            {
+                var objDirector = _service.BuscarDirector(id);
+                return objDirector;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return null;
         }
 
         [HttpPost(RouteDirector.Create)]

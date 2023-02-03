@@ -3,6 +3,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using Ms.Recarga.Api.Routes;
 using Ms.Recarga.Aplicacion.Recarga;
+using System;
 using System.Collections.Generic;
 using static Ms.Recarga.Api.Routes.ApiRoutes;
 using dominio = Ms.Recarga.Dominio.Entidades;
@@ -30,8 +31,16 @@ namespace Ms.Recarga.Api.Controllers
         [HttpGet(RouteRecarga.GetById)]
         public dominio.Recarga BuscarRecarga(int id)
         {
-            var objRecarga = _service.Recarga(id);
-            return objRecarga;
+            try
+            {
+                var objRecarga = _service.Recarga(id);
+                return objRecarga;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return null;
         }
 
         [HttpPost(RouteRecarga.Create)]

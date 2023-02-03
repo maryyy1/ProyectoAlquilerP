@@ -7,6 +7,7 @@ using Ms.Alquiler.Api.Routes;
 using Ms.Alquiler.Aplicacion.DetalleAlquiler;
 using static Ms.Alquiler.Api.Routes.ApiRoutes;
 using Ms.Alquiler.Dominio.Entidades;
+using System;
 
 namespace Ms.Alquiler.Api.Controllers
 {
@@ -30,8 +31,17 @@ namespace Ms.Alquiler.Api.Controllers
         [HttpGet(RouteDetalleAlquiler.GetById)]
         public dominio.DetalleAlquiler BuscarDetalleAlquiler(int id)
         {
-            var objDetalleAlquiler = _service.DetalleAlquiler(id);
-            return objDetalleAlquiler;
+            try
+            {
+                var objDetalleAlquiler = _service.DetalleAlquiler(id);
+                return objDetalleAlquiler;
+
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            return null;
         }
 
         [HttpPost(RouteDetalleAlquiler.Create)]

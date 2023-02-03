@@ -7,6 +7,7 @@ using Ms.Cliente.Api.Routes;
 using Ms.Cliente.Aplicacion.Tarjeta;
 using static Ms.Cliente.Api.Routes.ApiRoutes;
 using Ms.Cliente.Dominio.Entidades;
+using System;
 
 namespace Ms.Tarjeta.Api.Controllers
 {
@@ -30,8 +31,16 @@ namespace Ms.Tarjeta.Api.Controllers
         [HttpGet(RouteTarjeta.GetById)]
         public dominio.Tarjeta BuscarTarjeta(int id)
         {
-            var objTarjeta = _service.Tarjeta(id);
-            return objTarjeta;
+            try
+            {
+                var objTarjeta = _service.Tarjeta(id);
+                return objTarjeta;
+            }
+            catch (Exception ex)
+            { 
+            
+            }
+            return null;
         }
 
         [HttpPost(RouteTarjeta.Create)]

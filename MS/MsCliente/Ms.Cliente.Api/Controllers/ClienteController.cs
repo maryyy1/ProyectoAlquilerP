@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Ms.Cliente.Aplicacion.Cliente;
+using System;
 using System.Collections.Generic;
 using static Ms.Cliente.Api.Routes.ApiRoutes;
 using dominio = Ms.Cliente.Dominio.Entidades;
@@ -25,9 +26,18 @@ namespace Ms.Pelicula.Api.Controllers
 
         [HttpGet(RouteCliente.GetById)]
         public dominio.Cliente BuscarCliente(int id)
+        
         {
-            var objCliente = _service.Cliente(id);
-            return objCliente;
+            try
+            {
+                var objCliente = _service.Cliente(id);
+                return objCliente;
+            }
+            catch (Exception ex)
+            {
+            
+            }
+            return null;
         }
 
         [HttpPost(RouteCliente.Create)]

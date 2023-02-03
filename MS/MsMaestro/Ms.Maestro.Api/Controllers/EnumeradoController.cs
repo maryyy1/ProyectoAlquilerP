@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Ms.Maestro.Aplicacion.Enumerado;
+using System;
 using System.Collections.Generic;
 using static Ms.Maestro.Api.Routes.ApiRoutes;
 using dominio = Ms.Maestro.Dominio.Entidades;
@@ -26,8 +27,16 @@ namespace Ms.Maestro.Api.Controllers
         [HttpGet(RouteEnumerado.GetById)]
         public dominio.Enumerado BuscarEnumerado(int id)
         {
-            var objEnumerado = _service.Enumerado(id);
-            return objEnumerado;
+            try
+            {
+                var objEnumerado = _service.Enumerado(id);
+                return objEnumerado;
+            }
+            catch (Exception ex)
+            { 
+            
+            }
+            return null;
         }
 
         [HttpPost(RouteEnumerado.Create)]

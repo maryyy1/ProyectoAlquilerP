@@ -3,6 +3,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using Ms.Pelicula.Api.Routes;
 using Ms.Pelicula.Aplicacion.Pelicula;
+using System;
 using System.Collections.Generic;
 using static Ms.Pelicula.Api.Routes.ApiRoutes;
 using dominio = Ms.Pelicula.Dominio.Entidades;
@@ -29,8 +30,16 @@ namespace Ms.Pelicula.Api.Controllers
         [HttpGet(RoutePelicula.GetById)]
         public dominio.Pelicula BuscarPelicula(int id)
         {
-            var objPelicula = _service.BuscarPelicula(id);
-            return objPelicula;
+            try
+            {
+                var objPelicula = _service.BuscarPelicula(id);
+                return objPelicula;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return null;
         }
 
         [HttpPost(RoutePelicula.Create)]

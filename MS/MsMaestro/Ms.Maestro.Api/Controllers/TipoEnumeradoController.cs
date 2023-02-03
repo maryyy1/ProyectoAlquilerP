@@ -7,6 +7,7 @@ using Ms.Maestro.Api.Routes;
 using Ms.Maestro.Aplicacion.TipoEnumerado;
 using static Ms.Maestro.Api.Routes.ApiRoutes;
 using Ms.Maestro.Dominio.Entidades;
+using System;
 
 namespace Ms.Tarjeta.Api.Controllers
 {
@@ -30,8 +31,16 @@ namespace Ms.Tarjeta.Api.Controllers
         [HttpGet(RouteTipoEnumerado.GetById)]
         public dominio.TipoEnumerado BuscarTipoEnumerado(int id)
         {
-            var objTipoEnumerado = _service.TipoEnumerado(id);
-            return objTipoEnumerado;
+            try
+            {
+                var objTipoEnumerado = _service.TipoEnumerado(id);
+                return objTipoEnumerado;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return null;
         }
 
         [HttpPost(RouteTipoEnumerado.Create)]

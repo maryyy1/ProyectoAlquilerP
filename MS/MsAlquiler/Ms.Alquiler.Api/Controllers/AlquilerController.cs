@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Ms.Alquiler.Aplicacion.Alquiler;
+using System;
 using System.Collections.Generic;
 using static Ms.Alquiler.Api.Routes.ApiRoutes;
 using dominio = Ms.Alquiler.Dominio.Entidades;
@@ -26,8 +27,16 @@ namespace Ms.Alquiler.Api.Controllers
         [HttpGet(RouteAlquiler.GetById)]
         public dominio.Alquiler BuscarAlquiler(int id)
         {
-            var objAlquiler = _service.BuscarAlquiler(id);
-            return objAlquiler;
+            try
+            {
+                var objAlquiler = _service.BuscarAlquiler(id);
+                return objAlquiler;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return null;
         }
 
         [HttpPost(RouteAlquiler.Create)]
