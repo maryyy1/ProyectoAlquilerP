@@ -39,7 +39,8 @@ namespace Ms.Alquiler.Api.Controllers
             }
             catch (Exception ex)
             {
-                
+                Console.WriteLine("Error: " + ex);
+                Console.ReadKey();
             }
             return null;
         }

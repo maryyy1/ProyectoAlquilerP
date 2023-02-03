@@ -38,7 +38,8 @@ namespace Ms.Recarga.Api.Controllers
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine("Error: " + ex);
+                Console.ReadKey();
             }
             return null;
         }

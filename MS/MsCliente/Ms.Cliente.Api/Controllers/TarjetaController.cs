@@ -37,8 +37,9 @@ namespace Ms.Tarjeta.Api.Controllers
                 return objTarjeta;
             }
             catch (Exception ex)
-            { 
-            
+            {
+                Console.WriteLine("Error: " + ex);
+                Console.ReadKey();
             }
             return null;
         }

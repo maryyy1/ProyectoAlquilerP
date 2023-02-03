@@ -32,9 +32,10 @@ namespace Ms.Alquiler.Api.Controllers
                 var objAlquiler = _service.BuscarAlquiler(id);
                 return objAlquiler;
             }
-            catch (Exception ex)
+            catch (Exception ex) 
             {
-
+                Console.WriteLine("Error: " + ex);
+                Console.ReadKey();
             }
             return null;
         }
