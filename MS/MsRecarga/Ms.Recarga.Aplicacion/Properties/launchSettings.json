@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Ms.Recarga.Aplicacion": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:63047;http://localhost:63049"
+    }
+  }
+}

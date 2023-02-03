@@ -32,21 +32,20 @@ namespace Ms.Pelicula.Aplicacion.Director
         {
             director.esEliminado = false;
             director.fechaCreacion =DateTime.Now;
-            director.esActivo = true;                     
-
-            var p = _directorR.InsertOne(director);
+            director.esActivo = true;                   
+            _directorR.InsertOne(director);
 
             return true;
         }
 
-        public dominio.Director Director(int idDirector)
+        public dominio.Director BuscarDirector(int idDirector)
         {
             Expression<Func<dominio.Director, bool>> filter = s => s.esEliminado == false && s.IdDirector == idDirector;
             var item = (_director.Context().FindAsync(filter, null).Result).FirstOrDefault();
             return item;
         }
 
-        public void Eliminar(int idDirector)
+        public void EliminarDirector(int idDirector)
         {
             Expression<Func<dominio.Director, bool>> filter = s => s.esEliminado == false && s.IdDirector == idDirector;
             var item = (_director.Context().FindOneAndDelete(filter, null));

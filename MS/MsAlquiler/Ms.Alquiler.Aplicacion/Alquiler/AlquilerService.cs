@@ -38,14 +38,14 @@ namespace Ms.Alquiler.Aplicacion.Alquiler
             return true;
         }
 
-        public dominio.Alquiler Alquiler (int idAlquiler)
+        public dominio.Alquiler BuscarAlquiler (int idAlquiler)
         {
             Expression<Func<dominio.Alquiler, bool>> filter = s => s.esEliminado == false && s.IdAlquiler == idAlquiler;
             var item = (_alquiler.Context().FindAsync(filter, null).Result).FirstOrDefault();
             return item;
         }
 
-        public void Eliminar(int idAlquiler)
+        public void EliminarAlquiler(int idAlquiler)
         {
             Expression<Func<dominio.Alquiler, bool>> filter = s => s.esEliminado == false && s.IdAlquiler == idAlquiler;
             var item = (_alquiler.Context().FindOneAndDelete(filter, null));

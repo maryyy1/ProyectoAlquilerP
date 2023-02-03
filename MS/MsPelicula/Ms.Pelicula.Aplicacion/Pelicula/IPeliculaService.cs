@@ -7,7 +7,8 @@ namespace Ms.Pelicula.Aplicacion.Pelicula
     {
         List<dominio.Pelicula> ListarPeliculas();
         bool RegistrarPelicula(dominio.Pelicula pelicula);
-        dominio.Pelicula Pelicula(int idPelicula);
-        void Eliminar(int idPelicula);
+        dominio.Pelicula BuscarPelicula(int idPelicula);
+        bool ModificarPelicula(dominio.Pelicula pelicula);
+        void EliminarPelicula(int idPelicula);
     }
 }

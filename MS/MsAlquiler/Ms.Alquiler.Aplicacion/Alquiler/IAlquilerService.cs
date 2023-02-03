@@ -7,7 +7,7 @@ namespace Ms.Alquiler.Aplicacion.Alquiler
     {
         List<dominio.Alquiler> ListarAlquileres();
         bool RegistrarAlquiler(dominio.Alquiler alquiler);
-        dominio.Alquiler Alquiler(int idAlquiler);
-        void Eliminar(int idAlquiler);
+        dominio.Alquiler BuscarAlquiler(int idAlquiler);
+        void EliminarAlquiler(int idAlquiler);
     }
 }

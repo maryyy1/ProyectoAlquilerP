@@ -29,7 +29,7 @@ namespace Ms.Pelicula.Api.Controllers
         [HttpGet(RouteDirector.GetById)]
         public dominio.Director BuscarDirector(int id)
         {
-            var objDirector = _service.Director(id);
+            var objDirector = _service.BuscarDirector(id);
             return objDirector;
         }
 
@@ -69,7 +69,7 @@ namespace Ms.Pelicula.Api.Controllers
         [HttpDelete(RouteDirector.Delete)]
         public ActionResult<dominio.Director> EliminarDirector(int id)
         {
-            _service.Eliminar(id);
+            _service.EliminarDirector(id);
             return Ok(id);
         }
     }

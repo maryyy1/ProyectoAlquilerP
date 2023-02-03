@@ -37,13 +37,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Recarga.Api", "MS\MsReca
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API Gateway", "API Gateway", "{0FF8EF12-E5DF-42BB-B836-2F5D1E98F0E9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Gateway.Api", "API Gateway\Ms.Gateway.Api\Ms.Gateway.Api.csproj", "{556DCC59-7F44-4CC9-9C66-525FF6F1A153}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway.Api", "API Gateway\Gateway.Api\Gateway.Api.csproj", "{556DCC59-7F44-4CC9-9C66-525FF6F1A153}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MS", "MS", "{7DEE648F-8745-4367-9908-7B0E6C890C81}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Alquiler.Aplicacion", "MS\MsAlquiler\Ms.Alquiler.Aplicacion\Ms.Alquiler.Aplicacion.csproj", "{BB5BD36F-4127-4D89-9BB1-7607B45ADFDB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ms.Alquiler.Infraestructura", "MS\MsAlquiler\Ms.Alquiler.Infraestructura\Ms.Alquiler.Infraestructura.csproj", "{00425DCE-05C1-4A9E-96BF-554E122A539C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Alquiler.Infraestructura", "MS\MsAlquiler\Ms.Alquiler.Infraestructura\Ms.Alquiler.Infraestructura.csproj", "{00425DCE-05C1-4A9E-96BF-554E122A539C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Alquiler.Dominio", "MS\MsAlquiler\Ms.Alquiler.Dominio\Ms.Alquiler.Dominio.csproj", "{5DEC49FD-4AB5-497F-9338-D2B2C69DEBB9}"
 EndProject
@@ -58,6 +58,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Maestro.Dominio", "MS\MsMaestro\Ms.Maestro.Dominio\Ms.Maestro.Dominio.csproj", "{2F778BA2-EDB7-4DED-B787-6AE07FEF70B3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ms.Maestro.Infraestructura", "MS\MsMaestro\Ms.Maestro.Infraestructura\Ms.Maestro.Infraestructura.csproj", "{C8503136-99FB-47D4-83B5-74D401C23804}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway.Aplicacion", "API Gateway\Gateway.Aplicacion\Gateway.Aplicacion.csproj", "{49F41798-8AAD-497C-B347-D6C198B922E1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -149,6 +151,10 @@ Global
 		{C8503136-99FB-47D4-83B5-74D401C23804}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8503136-99FB-47D4-83B5-74D401C23804}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C8503136-99FB-47D4-83B5-74D401C23804}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49F41798-8AAD-497C-B347-D6C198B922E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49F41798-8AAD-497C-B347-D6C198B922E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49F41798-8AAD-497C-B347-D6C198B922E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49F41798-8AAD-497C-B347-D6C198B922E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -180,6 +186,7 @@ Global
 		{E6E9D257-CDA5-415C-BC7C-D4AB0DA6E68E} = {645B58A5-0946-4CC8-BD66-0A6969DCD48E}
 		{2F778BA2-EDB7-4DED-B787-6AE07FEF70B3} = {645B58A5-0946-4CC8-BD66-0A6969DCD48E}
 		{C8503136-99FB-47D4-83B5-74D401C23804} = {645B58A5-0946-4CC8-BD66-0A6969DCD48E}
+		{49F41798-8AAD-497C-B347-D6C198B922E1} = {0FF8EF12-E5DF-42BB-B836-2F5D1E98F0E9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {27844B6B-8497-4BF0-9E47-DC8B7F3DF28C}
