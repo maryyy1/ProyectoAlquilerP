@@ -1,11 +1,11 @@
-﻿
-using Microsoft.AspNetCore.Http;
+﻿using Gateway.Aplicacion.AlquileresClient;
 using Microsoft.AspNetCore.Mvc;
-using static Gateway.Api.Routes.ApiRoutes;
+using Serilog;
+using System;
 using System.Collections.Generic;
-using Alquileres = Gateway.Aplicacion.AlquileresClient;
-//using Gateway.Aplicacion.Peliculas.Request;
 using System.Threading.Tasks;
+using static Gateway.Api.Routes.ApiRoutes;
+using Alquileres = Gateway.Aplicacion.AlquileresClient;
 
 namespace Gateway.Api.NewFolder
 {
@@ -16,28 +16,60 @@ namespace Gateway.Api.NewFolder
 
         public AlquilerController(Alquileres.IClient alquileresClient)
         {
-            _alquileresClient = alquileresClient;
+            try
+            {
+                _alquileresClient = alquileresClient;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
         }
 
         [HttpGet(RouteAlquiler.GetAll)]
         public Task<ICollection<Alquileres.Alquiler>> ListarAlquileres()
         {
-            var listaAlquiler = _alquileresClient.ApiV1AlquilerAllAsync();
-            return listaAlquiler;
+            try
+            {
+                var listaAlquiler = _alquileresClient.ApiV1AlquilerAllAsync();
+                return listaAlquiler;
+            }
+            catch (ApiException ex)
+            {
+                Log.Error("ApiException: " + ex);
+            }
+
+            return null;
         }
 
         [HttpGet(RouteAlquiler.GetById)]
         public Task<Alquileres.Alquiler> BuscarAlquiler(int id)
         {
-            var objAlquiler = _alquileresClient.ApiV1AlquilerAsync(id);
-            return objAlquiler;
+            try
+            {
+                var objAlquiler = _alquileresClient.ApiV1AlquilerAsync(id);
+                return objAlquiler;
+            }
+            catch (ApiException ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+
+            return null;
         }
+
 
         [HttpPost(RouteAlquiler.Create)]
         public void CrearAlquiler(Alquileres.Alquiler alquiler)
         {
-            _alquileresClient.ApiV1AlquilerCreateAsync(alquiler);
+            try
+            {
+                _alquileresClient.ApiV1AlquilerCreateAsync(alquiler);
+            }
+            catch (ApiException ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
         }
-
     }
 }
