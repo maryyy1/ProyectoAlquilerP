@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using dominio = Ms.Pelicula.Dominio.Entidades;
 using Ms.Pelicula.Api.Routes;
 using System;
+using Serilog;
 
 namespace Ms.Pelicula.Api.Controllers
 {
@@ -17,14 +18,30 @@ namespace Ms.Pelicula.Api.Controllers
 
         public DirectorController(IDirectorService service)
         {
-            _service = service;
+            try
+            {
+                _service = service;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            
         }
 
         [HttpGet(RouteDirector.GetAll)]
         public IEnumerable<dominio.Director> ListarDirectores()
         {
-            var listaDirector = _service.ListarDirectores();
-            return listaDirector;
+            try
+            {
+                var listaDirector = _service.ListarDirectores();
+                return listaDirector;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         [HttpGet(RouteDirector.GetById)]
@@ -37,8 +54,7 @@ namespace Ms.Pelicula.Api.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex);
-                Console.ReadKey();
+                Log.Error("Exception: " + ex);
             }
             return null;
         }
@@ -46,8 +62,16 @@ namespace Ms.Pelicula.Api.Controllers
         [HttpPost(RouteDirector.Create)]
         public ActionResult<dominio.Director> CrearDirector([FromBody] dominio.Director director)
         {
-            _service.RegistrarDirector(director);
-            return Ok();
+            try
+            {
+                _service.RegistrarDirector(director);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         //[HttpPut(RouteCategoria.Update)]
@@ -79,8 +103,16 @@ namespace Ms.Pelicula.Api.Controllers
         [HttpDelete(RouteDirector.Delete)]
         public ActionResult<dominio.Director> EliminarDirector(int id)
         {
-            _service.EliminarDirector(id);
-            return Ok(id);
+            try
+            {
+                _service.EliminarDirector(id);
+                return Ok(id);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
     }
 }

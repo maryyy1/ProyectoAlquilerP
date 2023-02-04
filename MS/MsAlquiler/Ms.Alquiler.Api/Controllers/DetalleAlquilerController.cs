@@ -8,6 +8,7 @@ using Ms.Alquiler.Aplicacion.DetalleAlquiler;
 using static Ms.Alquiler.Api.Routes.ApiRoutes;
 using Ms.Alquiler.Dominio.Entidades;
 using System;
+using Serilog;
 
 namespace Ms.Alquiler.Api.Controllers
 {
@@ -18,14 +19,30 @@ namespace Ms.Alquiler.Api.Controllers
 
         public DetalleAlquilerController(IDetalleAlquilerService service)
         {
-            _service = service;
+            try
+            {
+                _service = service;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            
         }
 
         [HttpGet(RouteDetalleAlquiler.GetAll)]
         public IEnumerable<dominio.DetalleAlquiler> ListarDetallesAlquileres()
         {
-            var listaDetalleAlquiler = _service.ListarDetallesAlquileres();
-            return listaDetalleAlquiler;
+            try
+            {
+                var listaDetalleAlquiler = _service.ListarDetallesAlquileres();
+                return listaDetalleAlquiler;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         [HttpGet(RouteDetalleAlquiler.GetById)]
@@ -39,8 +56,7 @@ namespace Ms.Alquiler.Api.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex);
-                Console.ReadKey();
+                Log.Error("Exception: " + ex);
             }
             return null;
         }
@@ -48,8 +64,16 @@ namespace Ms.Alquiler.Api.Controllers
         [HttpPost(RouteDetalleAlquiler.Create)]
         public ActionResult<dominio.DetalleAlquiler> CrearDetalleAlquiler(dominio.DetalleAlquiler detalleAlquiler)
         {
-            _service.RegistrarDetalleAlquiler(detalleAlquiler);
-            return Ok();
+            try
+            {
+                _service.RegistrarDetalleAlquiler(detalleAlquiler);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         //[HttpPut(RouteProducto.Update)]
@@ -81,8 +105,16 @@ namespace Ms.Alquiler.Api.Controllers
         [HttpDelete(RouteDetalleAlquiler.Delete)]
         public ActionResult<dominio.DetalleAlquiler> EliminarDetalleAlquiler(int id)
         {
-            _service.Eliminar(id);
-            return Ok(id);
+            try
+            {
+                _service.Eliminar(id);
+                return Ok(id);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
     }
 }

@@ -3,6 +3,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using Ms.Pelicula.Api.Routes;
 using Ms.Pelicula.Aplicacion.Pelicula;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using static Ms.Pelicula.Api.Routes.ApiRoutes;
@@ -17,14 +18,30 @@ namespace Ms.Pelicula.Api.Controllers
 
         public PeliculaController(IPeliculaService service)
         {
-            _service = service;
+            try
+            {
+                _service = service;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            
         }
 
         [HttpGet(RoutePelicula.GetAll)]
         public IEnumerable<dominio.Pelicula> ListarPeliculas()
         {
-            var listaPelicula = _service.ListarPeliculas();
-            return listaPelicula;
+            try
+            {
+                var listaPelicula = _service.ListarPeliculas();
+                return listaPelicula;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         [HttpGet(RoutePelicula.GetById)]
@@ -37,8 +54,7 @@ namespace Ms.Pelicula.Api.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex);
-                Console.ReadKey();
+                Log.Error("Exception: " + ex);
             }
             return null;
         }
@@ -46,23 +62,45 @@ namespace Ms.Pelicula.Api.Controllers
         [HttpPost(RoutePelicula.Create)]
         public ActionResult<dominio.Pelicula> CrearPelicula(dominio.Pelicula pelicula)
         {
-            _service.RegistrarPelicula(pelicula);
+            try
+            {
+                _service.RegistrarPelicula(pelicula);
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         [HttpPut(RoutePelicula.Update)]
         public ActionResult<dominio.Pelicula> ModificarPelicula(dominio.Pelicula pelicula)
         {
+            try { 
             _service.ModificarPelicula(pelicula);
             return Ok();
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         [HttpDelete(RoutePelicula.Delete)]
         public ActionResult<dominio.Pelicula> EliminarPelicula(int id)
         {
-            _service.EliminarPelicula(id);
-            return Ok(id);
+            try
+            {
+                _service.EliminarPelicula(id);
+                return Ok(id);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
     }
 }

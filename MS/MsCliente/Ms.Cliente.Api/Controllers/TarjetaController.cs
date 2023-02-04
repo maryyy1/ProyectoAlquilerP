@@ -8,6 +8,7 @@ using Ms.Cliente.Aplicacion.Tarjeta;
 using static Ms.Cliente.Api.Routes.ApiRoutes;
 using Ms.Cliente.Dominio.Entidades;
 using System;
+using Serilog;
 
 namespace Ms.Tarjeta.Api.Controllers
 {
@@ -18,14 +19,30 @@ namespace Ms.Tarjeta.Api.Controllers
 
         public TarjetaController(ITarjetaService service)
         {
-            _service = service;
+            try
+            {
+                _service = service;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            
         }
 
         [HttpGet(RouteTarjeta.GetAll)]
         public IEnumerable<dominio.Tarjeta> ListarTarjetas()
         {
-            var listaTarjeta = _service.ListarTarjetas();
-            return listaTarjeta;
+            try
+            {
+                var listaTarjeta = _service.ListarTarjetas();
+                return listaTarjeta;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         [HttpGet(RouteTarjeta.GetById)]
@@ -38,8 +55,7 @@ namespace Ms.Tarjeta.Api.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex);
-                Console.ReadKey();
+                Log.Error("Exception: " + ex);
             }
             return null;
         }
@@ -47,8 +63,16 @@ namespace Ms.Tarjeta.Api.Controllers
         [HttpPost(RouteTarjeta.Create)]
         public ActionResult<dominio.Tarjeta> CrearTarjeta(dominio.Tarjeta tarjeta)
         {
-            _service.RegistrarTarjeta(tarjeta);
-            return Ok();
+            try
+            {
+                _service.RegistrarTarjeta(tarjeta);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         //[HttpPut(RouteProducto.Update)]
@@ -80,8 +104,16 @@ namespace Ms.Tarjeta.Api.Controllers
         [HttpDelete(RouteTarjeta.Delete)]
         public ActionResult<dominio.Tarjeta> EliminarTarjeta(int id)
         {
-            _service.Eliminar(id);
-            return Ok(id);
+            try
+            {
+                _service.Eliminar(id);
+                return Ok(id);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
     }
 }

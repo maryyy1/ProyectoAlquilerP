@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Ms.Maestro.Aplicacion.Enumerado;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using static Ms.Maestro.Api.Routes.ApiRoutes;
@@ -14,14 +15,30 @@ namespace Ms.Maestro.Api.Controllers
 
         public EnumeradoController(IEnumeradoService service)
         {
-            _service = service;
+            try
+            {
+                _service = service;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            
         }
 
         [HttpGet(RouteEnumerado.GetAll)]
         public IEnumerable<dominio.Enumerado> ListarEnumerados()
         {
-            var listaEnumerado = _service.ListarEnumerados();
-            return listaEnumerado;
+            try
+            {
+                var listaEnumerado = _service.ListarEnumerados();
+                return listaEnumerado;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         [HttpGet(RouteEnumerado.GetById)]
@@ -34,8 +51,7 @@ namespace Ms.Maestro.Api.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex);
-                Console.ReadKey();
+                Log.Error("Exception: " + ex);
             }
             return null;
         }
@@ -43,9 +59,17 @@ namespace Ms.Maestro.Api.Controllers
         [HttpPost(RouteEnumerado.Create)]
         public ActionResult<dominio.Enumerado> CrearEnumerado(dominio.Enumerado enumerado)
         {
-            _service.RegistrarEnumerado(enumerado);
+            try
+            {
+                _service.RegistrarEnumerado(enumerado);
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         //[HttpPut(RouteProducto.Update)]
@@ -77,8 +101,16 @@ namespace Ms.Maestro.Api.Controllers
         [HttpDelete(RouteEnumerado.Delete)]
         public ActionResult<dominio.Enumerado> EliminarEnumerado(int id)
         {
-            _service.Eliminar(id);
-            return Ok(id);
+            try
+            {
+                _service.Eliminar(id);
+                return Ok(id);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
     }
 }

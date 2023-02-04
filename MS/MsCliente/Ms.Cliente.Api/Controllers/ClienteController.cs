@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Ms.Cliente.Aplicacion.Cliente;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using static Ms.Cliente.Api.Routes.ApiRoutes;
@@ -14,14 +15,30 @@ namespace Ms.Cliente.Api.Controllers
 
         public ClienteController(IClienteService service)
         {
-            _service = service;
+            try
+            {
+                _service = service;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            
         }
 
         [HttpGet(RouteCliente.GetAll)]
         public IEnumerable<dominio.Cliente> ListarClientes()
         {
-            var listaCliente = _service.ListarClientes();
-            return listaCliente ;
+            try
+            {
+                var listaCliente = _service.ListarClientes();
+                return listaCliente;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         [HttpGet(RouteCliente.GetById)]
@@ -35,8 +52,7 @@ namespace Ms.Cliente.Api.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex);
-                Console.ReadKey();
+                Log.Error("Exception: " + ex);
             }
             return null;
         }
@@ -44,9 +60,17 @@ namespace Ms.Cliente.Api.Controllers
         [HttpPost(RouteCliente.Create)]
         public ActionResult<dominio.Cliente> CrearCliente(dominio.Cliente cliente)
         {
-            _service.RegistrarCliente(cliente);
+            try
+            {
+                _service.RegistrarCliente(cliente);
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         //[HttpPut(RouteProducto.Update)]
@@ -78,8 +102,16 @@ namespace Ms.Cliente.Api.Controllers
         [HttpDelete(RouteCliente.Delete)]
         public ActionResult<dominio.Cliente> EliminarCliente(int id)
         {
-            _service.EliminarCliente(id);
-            return Ok(id);
+            try
+            {
+                _service.EliminarCliente(id);
+                return Ok(id);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
     }
 }

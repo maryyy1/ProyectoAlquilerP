@@ -8,6 +8,7 @@ using Ms.Maestro.Aplicacion.TipoEnumerado;
 using static Ms.Maestro.Api.Routes.ApiRoutes;
 using Ms.Maestro.Dominio.Entidades;
 using System;
+using Serilog;
 
 namespace Ms.Tarjeta.Api.Controllers
 {
@@ -18,14 +19,30 @@ namespace Ms.Tarjeta.Api.Controllers
 
         public TipoEnumeradoController(ITipoEnumeradoService service)
         {
-            _service = service;
+            try
+            {
+                _service = service;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            
         }
 
         [HttpGet(RouteTipoEnumerado.GetAll)]
         public IEnumerable<dominio.TipoEnumerado> ListarTiposEnumerados()
         {
-            var listaTipoEnumerado = _service.ListarTiposEnumerados();
-            return listaTipoEnumerado;
+            try
+            {
+                var listaTipoEnumerado = _service.ListarTiposEnumerados();
+                return listaTipoEnumerado;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         [HttpGet(RouteTipoEnumerado.GetById)]
@@ -38,8 +55,7 @@ namespace Ms.Tarjeta.Api.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex);
-                Console.ReadKey();
+                Log.Error("Exception: " + ex);
             }
             return null;
         }
@@ -47,8 +63,16 @@ namespace Ms.Tarjeta.Api.Controllers
         [HttpPost(RouteTipoEnumerado.Create)]
         public ActionResult<dominio.TipoEnumerado> CrearTipoEnumerado(dominio.TipoEnumerado tipoEnumerado)
         {
-            _service.RegistrarTipoEnumerado(tipoEnumerado);
-            return Ok();
+            try
+            {
+                _service.RegistrarTipoEnumerado(tipoEnumerado);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         //[HttpPut(RouteProducto.Update)]
@@ -80,8 +104,16 @@ namespace Ms.Tarjeta.Api.Controllers
         [HttpDelete(RouteTipoEnumerado.Delete)]
         public ActionResult<dominio.TipoEnumerado> EliminarTipoEnumerado(int id)
         {
-            _service.Eliminar(id);
-            return Ok(id);
+            try
+            {
+                _service.Eliminar(id);
+                return Ok(id);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
     }
 }

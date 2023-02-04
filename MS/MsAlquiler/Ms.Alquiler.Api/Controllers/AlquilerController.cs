@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Ms.Alquiler.Aplicacion.Alquiler;
+using Serilog;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using static Ms.Alquiler.Api.Routes.ApiRoutes;
 using dominio = Ms.Alquiler.Dominio.Entidades;
 
@@ -14,14 +16,29 @@ namespace Ms.Alquiler.Api.Controllers
 
         public AlquilerController(IAlquilerService service)
         {
-            _service = service;
+            try
+            {
+                _service = service;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
         }
 
         [HttpGet(RouteAlquiler.GetAll)]
         public IEnumerable<dominio.Alquiler> ListarAlquileres()
         {
-            var listaAlquiler = _service.ListarAlquileres();
-            return listaAlquiler;
+            try
+            {
+                var listaAlquiler = _service.ListarAlquileres();
+                return listaAlquiler;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         [HttpGet(RouteAlquiler.GetById)]
@@ -34,8 +51,7 @@ namespace Ms.Alquiler.Api.Controllers
             }
             catch (Exception ex) 
             {
-                Console.WriteLine("Error: " + ex);
-                Console.ReadKey();
+                Log.Error("Exception: " + ex);
             }
             return null;
         }
@@ -43,16 +59,32 @@ namespace Ms.Alquiler.Api.Controllers
         [HttpPost(RouteAlquiler.Create)]
         public ActionResult<dominio.Alquiler> CrearAlquiler(dominio.Alquiler alquiler)
         {
-            _service.RegistrarAlquiler(alquiler);
+            try
+            {
+                _service.RegistrarAlquiler(alquiler);
 
-            return Ok();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;;
         }
 
         [HttpDelete(RouteAlquiler.Delete)]
         public ActionResult<dominio.Alquiler> EliminarAlquiler(int id)
         {
-            _service.EliminarAlquiler(id);
-            return Ok(id);
+            try
+            {
+                _service.EliminarAlquiler(id);
+                return Ok(id);
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null ;
         }
     }
 }
