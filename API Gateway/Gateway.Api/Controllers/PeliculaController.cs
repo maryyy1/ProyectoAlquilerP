@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿/*
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using static Gateway.Api.Routes.ApiRoutes;
 using System.Collections.Generic;
@@ -33,18 +34,16 @@ namespace Gateway.Api.Controllers
         }
 
         [HttpPost(RoutePelicula.Create)]
-        public ActionResult<Task<Peliculas.Pelicula>> CrearPelicula(Peliculas.Pelicula pelicula)
+        public void CrearPelicula(Peliculas.Pelicula pelicula)
         {
-            _peliculasClient.ApiV1PeliculaCreateAsync(pelicula);
-
-            return Ok();
+            _peliculasClient.ApiV1PeliculaCreateAsync(pelicula);            
         }
 
         [HttpDelete(RoutePelicula.Delete)]
-        public ActionResult<Task<Peliculas.Pelicula>> EliminarPelicula(int id)
+        public void EliminarPelicula(int id)
         {
             _peliculasClient.ApiV1PeliculaDeleteAsync(id);
-            return Ok(id);
         }
     }
 }
+*/

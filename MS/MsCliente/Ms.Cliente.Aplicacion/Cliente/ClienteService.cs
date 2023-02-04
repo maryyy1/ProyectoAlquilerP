@@ -32,20 +32,19 @@ namespace Ms.Cliente.Aplicacion.Cliente
             cliente.esEliminado = false;
             cliente.fechaCreacion = DateTime.Now;
             cliente.esActivo = true;
-
             _clienteR.InsertOne(cliente);
 
             return true;
         }
 
-        public dominio.Cliente Cliente (int idCliente)
+        public dominio.Cliente BuscarCliente (int idCliente)
         {
             Expression<Func<dominio.Cliente, bool>> filter = s => s.esEliminado == false && s.IdCliente == idCliente;
             var item = (_cliente.Context().FindAsync(filter, null).Result).FirstOrDefault();
             return item;
         }
 
-        public void Eliminar(int idCliente)
+        public void EliminarCliente(int idCliente)
         {
             Expression<Func<dominio.Cliente, bool>> filter = s => s.esEliminado == false && s.IdCliente == idCliente;
             var item = (_cliente.Context().FindOneAndDelete(filter, null));

@@ -14,17 +14,29 @@
 
             // Write
             public const string Create = Base + "/pelicula/create";
-            public const string Update = Base + "/pelicula/update";
             public const string Delete = Base + "/pelicula/delete";
         }
+        /*
+        public static class RouteCliente
+        {
+            // Read
+            public const string GetAll = Base + "/cliente/all";
+            public const string GetById = Base + "/cliente/{id}";
+
+            // Write
+            public const string Create = Base + "/cliente/create";
+            public const string Delete = Base + "/cliente/delete";
+        }
+        */
         public static class RouteAlquiler
         {
             // Read
             public const string GetAll = Base + "/alquiler/all";
-
-            // Write           
-            public const string RegistrarAlquiler = Base + "/alquiler/create";
+            public const string GetById = Base + "/alquiler/{id}";
+            // Write
+            public const string Create = Base + "/alquiler/create";
 
         }
+
     }
 }

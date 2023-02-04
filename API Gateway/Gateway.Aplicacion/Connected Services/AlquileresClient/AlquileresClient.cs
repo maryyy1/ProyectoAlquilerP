@@ -97,11 +97,13 @@ namespace Gateway.Aplicacion.AlquileresClient
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.18.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.1.0))")]
     public partial class Client : IClient
     {
+        private string _baseUrl = "";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
 
-        public Client(System.Net.Http.HttpClient httpClient)
+        public Client(string baseUrl, System.Net.Http.HttpClient httpClient)
         {
+            BaseUrl = baseUrl;
             _httpClient = httpClient;
             _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(CreateSerializerSettings);
         }
@@ -111,6 +113,12 @@ namespace Gateway.Aplicacion.AlquileresClient
             var settings = new Newtonsoft.Json.JsonSerializerSettings();
             UpdateJsonSerializerSettings(settings);
             return settings;
+        }
+
+        public string BaseUrl
+        {
+            get { return _baseUrl; }
+            set { _baseUrl = value; }
         }
 
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
@@ -134,7 +142,7 @@ namespace Gateway.Aplicacion.AlquileresClient
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<Alquiler>> ApiV1AlquilerAllAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/v1/alquiler/all");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/alquiler/all");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -211,7 +219,7 @@ namespace Gateway.Aplicacion.AlquileresClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/v1/alquiler/{id}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/alquiler/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -286,7 +294,7 @@ namespace Gateway.Aplicacion.AlquileresClient
         public virtual async System.Threading.Tasks.Task<Alquiler> ApiV1AlquilerCreateAsync(Alquiler body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/v1/alquiler/create");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/alquiler/create");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -364,7 +372,7 @@ namespace Gateway.Aplicacion.AlquileresClient
         public virtual async System.Threading.Tasks.Task<Alquiler> ApiV1AlquilerDeleteAsync(int? id, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/v1/alquiler/delete?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/alquiler/delete?");
             if (id != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("id") + "=").Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -443,7 +451,7 @@ namespace Gateway.Aplicacion.AlquileresClient
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<DetalleAlquiler>> ApiV1DetalleAlquilerAllAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/v1/detalleAlquiler/all");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/detalleAlquiler/all");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -520,7 +528,7 @@ namespace Gateway.Aplicacion.AlquileresClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/v1/detalleAlquiler/{id}");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/detalleAlquiler/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -595,7 +603,7 @@ namespace Gateway.Aplicacion.AlquileresClient
         public virtual async System.Threading.Tasks.Task<DetalleAlquiler> ApiV1DetalleAlquilerCreateAsync(DetalleAlquiler body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/v1/detalleAlquiler/create");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/detalleAlquiler/create");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -673,7 +681,7 @@ namespace Gateway.Aplicacion.AlquileresClient
         public virtual async System.Threading.Tasks.Task<DetalleAlquiler> ApiV1DetalleAlquilerDeleteAsync(int? id, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/v1/detalleAlquiler/delete?");
+            urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/v1/detalleAlquiler/delete?");
             if (id != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("id") + "=").Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
@@ -917,6 +925,8 @@ namespace Gateway.Aplicacion.AlquileresClient
 
     }
 
+
+
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.18.0.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.1.0))")]
     public partial class ApiException : System.Exception
     {
@@ -951,6 +961,7 @@ namespace Gateway.Aplicacion.AlquileresClient
             Result = result;
         }
     }
+
 }
 
 #pragma warning restore 1591

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Ms.Gateway.Api
+namespace Gateway.Api
 {
     public class Program
     {

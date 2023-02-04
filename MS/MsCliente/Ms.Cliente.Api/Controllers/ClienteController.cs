@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using static Ms.Cliente.Api.Routes.ApiRoutes;
 using dominio = Ms.Cliente.Dominio.Entidades;
 
-namespace Ms.Pelicula.Api.Controllers
+namespace Ms.Cliente.Api.Controllers
 {
     [ApiController]
     public class ClienteController : ControllerBase
@@ -30,7 +30,7 @@ namespace Ms.Pelicula.Api.Controllers
         {
             try
             {
-                var objCliente = _service.Cliente(id);
+                var objCliente = _service.BuscarCliente(id);
                 return objCliente;
             }
             catch (Exception ex)
@@ -78,7 +78,7 @@ namespace Ms.Pelicula.Api.Controllers
         [HttpDelete(RouteCliente.Delete)]
         public ActionResult<dominio.Cliente> EliminarCliente(int id)
         {
-            _service.Eliminar(id);
+            _service.EliminarCliente(id);
             return Ok(id);
         }
     }

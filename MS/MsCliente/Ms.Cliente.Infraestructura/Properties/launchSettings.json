@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "Ms.Pelicula.Infraestructura": {
+    "Ms.Cliente.Infraestructura": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
