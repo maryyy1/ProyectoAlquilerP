@@ -7,7 +7,8 @@ namespace Ms.Cliente.Aplicacion.Tarjeta
     {
         List<dominio.Tarjeta> ListarTarjetas();
         bool RegistrarTarjeta(dominio.Tarjeta tarjeta);
-        dominio.Tarjeta Tarjeta(int idTarjeta);
-        void Eliminar(int idTarjeta);
+        dominio.Tarjeta BuscarTarjeta(int idTarjeta);
+        bool ModificarTarjeta(dominio.Tarjeta tarjeta);
+        void EliminarTarjeta(int idTarjeta);
     }
 }

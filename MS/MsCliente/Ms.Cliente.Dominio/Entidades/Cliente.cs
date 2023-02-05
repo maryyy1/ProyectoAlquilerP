@@ -1,5 +1,8 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using Release.MongoDB.Repository;
 using Release.MongoDB.Repository.Model;
 
@@ -9,18 +12,18 @@ namespace Ms.Cliente.Dominio.Entidades
     [BsonIgnoreExtraElements]
     public class Cliente : EntityToLower<ObjectId>
     {
-        public int IdCliente { get; set; }
+        public int CliId { get; set; }
 
-        public string Dni { get; set; }
+        public string CliDni { get; set; }
 
-        public string Nombre { get; set; }
+        public string CliNombre { get; set; }
 
-        public string ApePaterno { get; set; }
+        public string CliApePat { get; set; }
 
-        public string ApeMaterno { get; set; }
+        public string CliApeMat { get; set; }
 
-        public string Correo { get; set; }
+        public string CliCorreo { get; set; }
 
-        public int Sexo { get; set; }
+        public int CliSexo { get; set; }
     }
 }

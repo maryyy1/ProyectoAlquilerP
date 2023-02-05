@@ -20,5 +20,7 @@ namespace Ms.Alquiler.Dominio.Entidades
 
         public string AlqEnlace { get; set; }
 
+        public int IdCliente { get; set; }
+
     }
 }

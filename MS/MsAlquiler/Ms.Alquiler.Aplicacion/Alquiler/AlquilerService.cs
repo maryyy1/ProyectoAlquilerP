@@ -51,6 +51,27 @@ namespace Ms.Alquiler.Aplicacion.Alquiler
             var item = (_alquiler.Context().FindOneAndDelete(filter, null));
 
         }
+
+        public bool ModificarAlquiler(dominio.Alquiler alquiler)
+        {
+            Expression<Func<dominio.Alquiler, bool>> filter = s => s.esEliminado == false && s.IdAlquiler == alquiler.IdAlquiler;
+            var peliculaActual = (_alquiler.Context().FindAsync(filter, null).Result).FirstOrDefault();
+            //    collection.FindOneAndReplace(x => x._id == producto._id, producto);
+
+            //    //var oldProducto = collection.Find(x => x.IdProducto == producto.IdProducto).FirstOrDefault();
+            //    //oldProducto.Nombre = producto.Nombre;
+            //    //oldProducto.Precio = producto.Precio;
+            //    //oldProducto.Cantidad = producto.Cantidad;
+            //    //collection.ReplaceOne(x=>x.IdProducto == oldProducto.IdProducto, oldProducto);
+
+
+            //    //Producto productoModificado = listaProducto.Single(x => x.IdProducto == producto.IdProducto);
+            //    //productoModificado.Nombre = producto.Nombre;
+            //    //productoModificado.Cantidad = producto.Cantidad;
+            //    //productoModificado.Precio= producto.Precio;
+            //_peliculaR.UpdateOne();
+            return true;
+        }
     }
 }
 

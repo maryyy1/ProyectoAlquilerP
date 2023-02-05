@@ -1,0 +1,298 @@
+﻿{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Ms.Recarga.Api",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/v1/recarga/all": {
+      "get": {
+        "tags": [
+          "Recarga"
+        ],
+        "operationId": "all",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Recarga"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Recarga"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Recarga"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/recarga/{id}": {
+      "get": {
+        "tags": [
+          "Recarga"
+        ],
+        "operationId": "recarga",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recarga"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recarga"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recarga"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/recarga/create": {
+      "post": {
+        "tags": [
+          "Recarga"
+        ],
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recarga"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recarga"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recarga"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recarga"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recarga"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recarga"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/recarga/update": {
+      "put": {
+        "tags": [
+          "Recarga"
+        ],
+        "operationId": "update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recarga"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recarga"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Recarga"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recarga"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recarga"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recarga"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/recarga/delete": {
+      "delete": {
+        "tags": [
+          "Recarga"
+        ],
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recarga"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recarga"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Recarga"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ObjectId": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "timestamp": {
+            "type": "integer",
+            "readOnly": true,
+            "format": "int32"
+          },
+          "machine": {
+            "type": "integer",
+            "readOnly": true,
+            "format": "int32"
+          },
+          "pid": {
+            "type": "integer",
+            "readOnly": true,
+            "format": "int32"
+          },
+          "increment": {
+            "type": "integer",
+            "readOnly": true,
+            "format": "int32"
+          },
+          "creationTime": {
+            "type": "string",
+            "readOnly": true,
+            "format": "date-time"
+          }
+        }
+      },
+      "Recarga": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "$ref": "#/components/schemas/ObjectId"
+          },
+          "fechaCreacion": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "esActivo": {
+            "type": "boolean"
+          },
+          "fechaModificacion": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "esEliminado": {
+            "type": "boolean"
+          },
+          "recId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "recFecha": {
+            "type": "string",
+            "nullable": true
+          },
+          "recMonto": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      }
+    }
+  }
+}

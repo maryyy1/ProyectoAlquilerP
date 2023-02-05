@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Alquileres\Response\" />
+    <Folder Include="Clientes\Request\" />
     <Folder Include="Peliculas\Request\" />
   </ItemGroup>
 

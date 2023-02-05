@@ -28,21 +28,33 @@ namespace Gateway.Aplicacion
             configuration.Bind(nameof(ClientSettings), msSettings);
 
             #region Cliente Ms Peliculas
-            /*
+            
             services.AddHttpClient("MsPelicula", client =>
             {
                 client.BaseAddress = new Uri(msSettings.PeliculasUrl);
-            });*/
+            });
             
             services.AddHttpClient("MsAlquiler", client =>
             {
                 client.BaseAddress = new Uri(msSettings.AlquileresUrl);
             });
 
+            services.AddHttpClient("MsCliente", client =>
+            {
+                client.BaseAddress = new Uri(msSettings.ClientesUrl);
+            });
+
+            services.AddHttpClient("MsRecarga", client =>
+            {
+                client.BaseAddress = new Uri(msSettings.RecargasUrl);
+            });
+
             #endregion
 
-            //services.AddTransient<PeliculasClient.IClient, PeliculasClient.Client>();
+            services.AddTransient<PeliculasClient.IClient, PeliculasClient.Client>();
             services.AddTransient<AlquileresClient.IClient, AlquileresClient.Client>();
+            services.AddTransient<ClientesClient.IClient, ClientesClient.Client>();
+            services.AddTransient<RecargasClient.IClient, RecargasClient.Client>();
 
             return services;
         }

@@ -9,7 +9,7 @@ namespace Ms.Recarga.Dominio.Entidades
     [BsonIgnoreExtraElements]
     public class Recarga : EntityToLower<ObjectId>
     {
-        public int IdRecarga { get; set; }
+        public int RecId { get; set; }
 
         public string RecFecha { get; set; }
 

@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using Ms.Cliente.Api.Routes;
 using Ms.Cliente.Aplicacion.Cliente;
 using Serilog;
 using System;
@@ -43,7 +46,6 @@ namespace Ms.Cliente.Api.Controllers
 
         [HttpGet(RouteCliente.GetById)]
         public dominio.Cliente BuscarCliente(int id)
-        
         {
             try
             {
@@ -73,31 +75,20 @@ namespace Ms.Cliente.Api.Controllers
             return null;
         }
 
-        //[HttpPut(RouteProducto.Update)]
-        //public ActionResult<dominio.Producto> ModificarProducto(dominio.Producto producto)
-        //{
-        //    #region Conexión a base de datos
-        //    var client = new MongoClient("mongodb://localhost:27017");
-        //    var database = client.GetDatabase("TDB_productos");
-        //    var collection = database.GetCollection<dominio.Producto>("producto");
-        //    #endregion
-
-        //    collection.FindOneAndReplace(x => x._id == producto._id, producto);
-
-        //    //var oldProducto = collection.Find(x => x.IdProducto == producto.IdProducto).FirstOrDefault();
-        //    //oldProducto.Nombre = producto.Nombre;
-        //    //oldProducto.Precio = producto.Precio;
-        //    //oldProducto.Cantidad = producto.Cantidad;
-        //    //collection.ReplaceOne(x=>x.IdProducto == oldProducto.IdProducto, oldProducto);
-
-
-        //    //Producto productoModificado = listaProducto.Single(x => x.IdProducto == producto.IdProducto);
-        //    //productoModificado.Nombre = producto.Nombre;
-        //    //productoModificado.Cantidad = producto.Cantidad;
-        //    //productoModificado.Precio= producto.Precio;
-        //    //return CreatedAtAction("ModificarProducto", productoModificado);
-        //    return Ok();
-        //}
+        [HttpPut(RouteCliente.Update)]
+        public ActionResult<dominio.Cliente> ModificarCliente(dominio.Cliente cliente)
+        {
+            try
+            {
+                _service.ModificarCliente(cliente);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
+        }
 
         [HttpDelete(RouteCliente.Delete)]
         public ActionResult<dominio.Cliente> EliminarCliente(int id)

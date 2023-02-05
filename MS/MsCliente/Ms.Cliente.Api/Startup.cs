@@ -1,10 +1,17 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Ms.Cliente.Aplicacion;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Ms.Cliente.Api
 {
@@ -22,7 +29,6 @@ namespace Ms.Cliente.Api
         {
             services.AddControllers();
             services.AddSwaggerGen();
-
             services.AddAplicacion(Configuration);
         }
 
@@ -35,8 +41,6 @@ namespace Ms.Cliente.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
-            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

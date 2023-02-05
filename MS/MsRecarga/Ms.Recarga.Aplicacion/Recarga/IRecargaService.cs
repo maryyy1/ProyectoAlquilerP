@@ -7,7 +7,8 @@ namespace Ms.Recarga.Aplicacion.Recarga
     {
         List<dominio.Recarga> ListarRecargas();
         bool RegistrarRecarga(dominio.Recarga recarga);
-        dominio.Recarga Recarga(int idRecarga);
-        void Eliminar(int idRecarga);
+        dominio.Recarga BuscarRecarga(int idRecarga);
+        bool ModificarRecarga(dominio.Recarga recarga);
+        void EliminarRecarga(int idRecarga);
     }
 }

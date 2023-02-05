@@ -8,6 +8,7 @@ namespace Ms.Cliente.Aplicacion.Cliente
         List<dominio.Cliente> ListarClientes();
         bool RegistrarCliente(dominio.Cliente cliente);
         dominio.Cliente BuscarCliente(int idCliente);
+        bool ModificarCliente(dominio.Cliente cliente);
         void EliminarCliente(int idCliente);
     }
 }

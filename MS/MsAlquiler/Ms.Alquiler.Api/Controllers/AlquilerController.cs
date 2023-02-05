@@ -57,19 +57,34 @@ namespace Ms.Alquiler.Api.Controllers
         }
 
         [HttpPost(RouteAlquiler.Create)]
-        public ActionResult<dominio.Alquiler> CrearAlquiler(dominio.Alquiler alquiler)
+        public void CrearAlquiler(dominio.Alquiler alquiler)
         {
             try
             {
                 _service.RegistrarAlquiler(alquiler);
 
+                //return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            //return null;;
+        }
+
+        [HttpPut(RouteAlquiler.Update)]
+        public ActionResult<dominio.Alquiler> ModificarAlquiler(dominio.Alquiler alquiler)
+        {
+            try
+            {
+                _service.ModificarAlquiler(alquiler);
                 return Ok();
             }
             catch (Exception ex)
             {
                 Log.Error("Exception: " + ex);
             }
-            return null;;
+            return null;
         }
 
         [HttpDelete(RouteAlquiler.Delete)]
@@ -86,5 +101,6 @@ namespace Ms.Alquiler.Api.Controllers
             }
             return null ;
         }
+
     }
 }

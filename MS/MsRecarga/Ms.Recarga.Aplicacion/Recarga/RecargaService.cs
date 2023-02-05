@@ -38,16 +38,37 @@ namespace Ms.Recarga.Aplicacion.Recarga
             return true;
         }
 
-        public dominio.Recarga Recarga(int idRecarga)
+        public dominio.Recarga BuscarRecarga(int idRecarga)
         {
-            Expression<Func<dominio.Recarga, bool>> filter = s => s.esEliminado == false && s.IdRecarga == idRecarga;
+            Expression<Func<dominio.Recarga, bool>> filter = s => s.esEliminado == false && s.RecId == idRecarga;
             var item = (_recarga.Context().FindAsync(filter, null).Result).FirstOrDefault();
             return item;
         }
 
-        public void Eliminar(int idRecarga)
+        public bool ModificarRecarga(dominio.Recarga recarga)
         {
-            Expression<Func<dominio.Recarga, bool>> filter = s => s.esEliminado == false && s.IdRecarga == idRecarga;
+            Expression<Func<dominio.Recarga, bool>> filter = s => s.esEliminado == false && s.RecId == recarga.RecId;
+            var recargaActual = (_recarga.Context().FindAsync(filter, null).Result).FirstOrDefault();
+            //    collection.FindOneAndReplace(x => x._id == producto._id, producto);
+
+            //    //var oldProducto = collection.Find(x => x.IdProducto == producto.IdProducto).FirstOrDefault();
+            //    //oldProducto.Nombre = producto.Nombre;
+            //    //oldProducto.Precio = producto.Precio;
+            //    //oldProducto.Cantidad = producto.Cantidad;
+            //    //collection.ReplaceOne(x=>x.IdProducto == oldProducto.IdProducto, oldProducto);
+
+
+            //    //Producto productoModificado = listaProducto.Single(x => x.IdProducto == producto.IdProducto);
+            //    //productoModificado.Nombre = producto.Nombre;
+            //    //productoModificado.Cantidad = producto.Cantidad;
+            //    //productoModificado.Precio= producto.Precio;
+            //_peliculaR.UpdateOne();
+            return true;
+        }
+
+        public void EliminarRecarga(int idRecarga)
+        {
+            Expression<Func<dominio.Recarga, bool>> filter = s => s.esEliminado == false && s.RecId == idRecarga;
             var item = (_recarga.Context().FindOneAndDelete(filter, null));
             
         }

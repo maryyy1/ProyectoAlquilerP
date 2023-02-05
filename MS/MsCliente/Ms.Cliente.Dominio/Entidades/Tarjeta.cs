@@ -1,7 +1,10 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using Release.MongoDB.Repository;
 using Release.MongoDB.Repository.Model;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace Ms.Cliente.Dominio.Entidades
 {
@@ -9,16 +12,16 @@ namespace Ms.Cliente.Dominio.Entidades
     [BsonIgnoreExtraElements]
     public class Tarjeta : EntityToLower<ObjectId>
     {
-        public int IdTarjeta { get; set; }
+        public int TarId { get; set; }
 
-        public string Numero { get; set; }
+        public string TarNumero { get; set; }
 
-        public string FechaVencimiento { get; set; }
+        public string TarFecVen{ get; set; }
 
-        public string Cvv { get; set; }
+        public string TarCvv { get; set; }
 
-        public double Saldo { get; set; }
+        public double TarSaldo { get; set; }
 
-        public int Tipo { get; set; }
+        public int TarTipo { get; set; }
     }
 }

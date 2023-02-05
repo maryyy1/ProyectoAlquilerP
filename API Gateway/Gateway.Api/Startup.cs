@@ -28,7 +28,11 @@ namespace Gateway.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerGen();
+            //services.AddSwaggerGen();
+            services.AddSwaggerGen(options =>
+            {
+                options.CustomSchemaIds(type => type.FullName);
+            });
             services.AddAplicacion(Configuration);
         }
 

@@ -1,5 +1,4 @@
 ﻿using MongoDB.Driver;
-using Ms.Cliente.Dominio.Entidades;
 using Release.MongoDB.Repository;
 using System;
 using System.Collections.Generic;
@@ -14,7 +13,7 @@ namespace Ms.Cliente.Aplicacion.Tarjeta
         private readonly ICollectionContext<dominio.Tarjeta> _tarjeta;
         private readonly IBaseRepository<dominio.Tarjeta> _tarjetaR;
 
-        public TarjetaService(ICollectionContext<dominio.Tarjeta> tarjeta,
+        public TarjetaService(ICollectionContext<dominio.Tarjeta> tarjeta, 
                                 IBaseRepository<dominio.Tarjeta> tarjetaR)
         {
             _tarjeta = tarjeta;
@@ -25,33 +24,53 @@ namespace Ms.Cliente.Aplicacion.Tarjeta
         {
             Expression<Func<dominio.Tarjeta, bool>> filter = s => s.esEliminado == false;
             var items = (_tarjeta.Context().FindAsync(filter, null).Result).ToList();
+
             return items;
         }
 
         public bool RegistrarTarjeta(dominio.Tarjeta tarjeta)
         {
             tarjeta.esEliminado = false;
-            tarjeta.fechaCreacion = DateTime.Now;
+            tarjeta.fechaCreacion =DateTime.Now;
             tarjeta.esActivo = true;
-
             _tarjetaR.InsertOne(tarjeta);
 
             return true;
         }
 
-        public dominio.Tarjeta Tarjeta (int idTarjeta)
+        public dominio.Tarjeta BuscarTarjeta(int idTarjeta)
         {
-            Expression<Func<dominio.Tarjeta, bool>> filter = s => s.esEliminado == false && s.IdTarjeta == idTarjeta;
+            Expression<Func<dominio.Tarjeta, bool>> filter = s => s.esEliminado == false && s.TarId == idTarjeta;
             var item = (_tarjeta.Context().FindAsync(filter, null).Result).FirstOrDefault();
             return item;
         }
 
-        public void Eliminar(int idTarjeta)
+        public bool ModificarTarjeta(dominio.Tarjeta tarjeta)
         {
-            Expression<Func<dominio.Tarjeta, bool>> filter = s => s.esEliminado == false && s.IdTarjeta == idTarjeta;
-            var item = (_tarjeta.Context().FindOneAndDelete(filter, null));
+            Expression<Func<dominio.Tarjeta, bool>> filter = s => s.esEliminado == false && s.TarId == tarjeta.TarId;
+            var tarjetaActual = (_tarjeta.Context().FindAsync(filter, null).Result).FirstOrDefault();
+            //    collection.FindOneAndReplace(x => x._id == producto._id, producto);
 
+            //    //var oldProducto = collection.Find(x => x.IdProducto == producto.IdProducto).FirstOrDefault();
+            //    //oldProducto.Nombre = producto.Nombre;
+            //    //oldProducto.Precio = producto.Precio;
+            //    //oldProducto.Cantidad = producto.Cantidad;
+            //    //collection.ReplaceOne(x=>x.IdProducto == oldProducto.IdProducto, oldProducto);
+
+
+            //    //Producto productoModificado = listaProducto.Single(x => x.IdProducto == producto.IdProducto);
+            //    //productoModificado.Nombre = producto.Nombre;
+            //    //productoModificado.Cantidad = producto.Cantidad;
+            //    //productoModificado.Precio= producto.Precio;
+            //_peliculaR.UpdateOne();
+            return true;
+        }
+
+        public void EliminarTarjeta(int idTarjeta)
+        {
+            Expression<Func<dominio.Tarjeta, bool>> filter = s => s.esEliminado == false && s.TarId == idTarjeta;
+            var item = (_tarjeta.Context().FindOneAndDelete(filter, null));
+            
         }
     }
 }
-

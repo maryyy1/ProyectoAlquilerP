@@ -78,9 +78,11 @@ namespace Ms.Pelicula.Api.Controllers
         [HttpPut(RoutePelicula.Update)]
         public ActionResult<dominio.Pelicula> ModificarPelicula(dominio.Pelicula pelicula)
         {
-            try { 
-            _service.ModificarPelicula(pelicula);
-            return Ok();
+            try
+            {
+                _service.ModificarPelicula(pelicula);
+                return Ok();
+            }
             catch (Exception ex)
             {
                 Log.Error("Exception: " + ex);

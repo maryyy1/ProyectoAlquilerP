@@ -13,5 +13,7 @@ namespace Ms.Alquiler.Dominio.Entidades
     public class DetalleAlquiler : EntityToLower<ObjectId>
     {
         public int IdDetalleAlquiler { get; set; }
+
+        public int IdPelicula { get; set; }
     }
 }

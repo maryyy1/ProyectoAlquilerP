@@ -50,7 +50,7 @@ namespace Ms.Recarga.Api.Controllers
         {
             try
             {
-                var objRecarga = _service.Recarga(id);
+                var objRecarga = _service.BuscarRecarga(id);
                 return objRecarga;
             }
             catch (Exception ex)
@@ -77,12 +77,27 @@ namespace Ms.Recarga.Api.Controllers
             return null;
         }
 
+        [HttpPut(RouteRecarga.Update)]
+        public ActionResult<dominio.Recarga> ModificarRecarga(dominio.Recarga recarga)
+        {
+            try
+            {
+                _service.ModificarRecarga(recarga);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
+        }
+
         [HttpDelete(RouteRecarga.Delete)]
         public ActionResult<dominio.Recarga> EliminarRecarga(int id)
         {
             try
             {
-                _service.Eliminar(id);
+                _service.EliminarRecarga(id);
                 return Ok(id);
             }
             catch (Exception ex)
