@@ -1,13 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Gateway.Aplicacion.Common;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Gateway.Aplicacion.Common;
-using MediatR;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Reflection;
 
 namespace Gateway.Aplicacion
 {

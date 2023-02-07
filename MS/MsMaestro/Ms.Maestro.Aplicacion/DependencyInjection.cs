@@ -2,10 +2,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using MongoDB.Driver;
-using Release.MongoDB.Repository;
 using Ms.Maestro.Aplicacion.Enumerado;
 using Ms.Maestro.Aplicacion.TipoEnumerado;
 using Ms.Maestro.Infraestructura;
+using Release.MongoDB.Repository;
 using dominio = Ms.Maestro.Dominio.Entidades;
 
 namespace Ms.Maestro.Aplicacion

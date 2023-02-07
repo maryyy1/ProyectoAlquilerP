@@ -2,10 +2,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using MongoDB.Driver;
-using Release.MongoDB.Repository;
 using Ms.Pelicula.Aplicacion.Director;
 using Ms.Pelicula.Aplicacion.Pelicula;
 using Ms.Pelicula.Infraestructura;
+using Release.MongoDB.Repository;
 using dominio = Ms.Pelicula.Dominio.Entidades;
 
 namespace Ms.Pelicula.Aplicacion

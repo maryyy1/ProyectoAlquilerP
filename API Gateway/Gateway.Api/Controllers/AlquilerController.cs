@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using static Gateway.Api.Routes.ApiRoutes;
-using System.Collections.Generic;
-using Alquileres = Gateway.Aplicacion.AlquileresClient;
+﻿using Gateway.Aplicacion.Alquileres.Request;
 using Gateway.Aplicacion.AlquileresClient;
+using Microsoft.AspNetCore.Mvc;
+using Serilog;
+using System.Collections.Generic;
+using static Gateway.Api.Routes.ApiRoutes;
+using Alquileres = Gateway.Aplicacion.AlquileresClient;
 using Clientes = Gateway.Aplicacion.ClientesClient;
 using Peliculas = Gateway.Aplicacion.PeliculasClient;
-using Serilog;
-using System;
-using Gateway.Aplicacion.Alquileres.Request;
 
 namespace Gateway.Api.NewFolder
 {

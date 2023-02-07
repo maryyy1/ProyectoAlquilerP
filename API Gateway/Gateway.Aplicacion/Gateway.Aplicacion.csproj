@@ -5,10 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Alquileres\Response\**" />
     <Compile Remove="Clientes\**" />
     <Compile Remove="Peliculas\**" />
+    <EmbeddedResource Remove="Alquileres\Response\**" />
     <EmbeddedResource Remove="Clientes\**" />
     <EmbeddedResource Remove="Peliculas\**" />
+    <None Remove="Alquileres\Response\**" />
     <None Remove="Clientes\**" />
     <None Remove="Peliculas\**" />
   </ItemGroup>
@@ -26,10 +29,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Alquileres\Response\" />
   </ItemGroup>
 
 </Project>

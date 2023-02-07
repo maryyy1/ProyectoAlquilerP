@@ -2,10 +2,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using MongoDB.Driver;
-using Release.MongoDB.Repository;
 using Ms.Alquiler.Aplicacion.Alquiler;
 using Ms.Alquiler.Aplicacion.DetalleAlquiler;
 using Ms.Alquiler.Infraestructura;
+using Release.MongoDB.Repository;
 using dominio = Ms.Alquiler.Dominio.Entidades;
 
 namespace Ms.Alquiler.Aplicacion

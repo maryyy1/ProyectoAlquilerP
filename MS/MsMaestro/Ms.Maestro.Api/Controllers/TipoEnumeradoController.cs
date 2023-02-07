@@ -1,14 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using System.Collections.Generic;
-using MongoDB.Driver;
-using dominio = Ms.Maestro.Dominio.Entidades;
-using Ms.Maestro.Api.Routes;
 using Ms.Maestro.Aplicacion.TipoEnumerado;
-using static Ms.Maestro.Api.Routes.ApiRoutes;
-using Ms.Maestro.Dominio.Entidades;
-using System;
 using Serilog;
+using System;
+using System.Collections.Generic;
+using static Ms.Maestro.Api.Routes.ApiRoutes;
+using dominio = Ms.Maestro.Dominio.Entidades;
 
 namespace Ms.Tarjeta.Api.Controllers
 {

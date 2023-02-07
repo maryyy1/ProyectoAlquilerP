@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using static Gateway.Api.Routes.ApiRoutes;
-using System.Collections.Generic;
-using Clientes = Gateway.Aplicacion.ClientesClient;
-using Gateway.Aplicacion.ClientesClient;
+﻿using Gateway.Aplicacion.ClientesClient;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
-using System;
+using System.Collections.Generic;
+using static Gateway.Api.Routes.ApiRoutes;
+using Clientes = Gateway.Aplicacion.ClientesClient;
 
 namespace Gateway.Api.Controllers
 {
