@@ -5,7 +5,6 @@ using Alquileres = Gateway.Aplicacion.AlquileresClient;
 using Gateway.Aplicacion.AlquileresClient;
 using Clientes = Gateway.Aplicacion.ClientesClient;
 using Peliculas = Gateway.Aplicacion.PeliculasClient;
-using System.Threading.Tasks;
 using Serilog;
 using System;
 using Gateway.Aplicacion.Alquileres.Request;
@@ -35,11 +34,11 @@ namespace Gateway.Api.NewFolder
         }
 
         [HttpGet(RouteAlquiler.GetAll)]
-        public Task<ICollection<Alquileres.Alquiler>> ListarAlquileres()
+        public ICollection<Alquileres.Alquiler> ListarAlquileres()
         {
             try
             {
-                var listaAlquiler = _alquileresClient.ApiV1AlquilerAllAsync();
+                var listaAlquiler = _alquileresClient.ApiV1AlquilerAllAsync().Result;
                 return listaAlquiler;
             }
             catch (ApiException ex)
@@ -51,11 +50,11 @@ namespace Gateway.Api.NewFolder
         }
 
         [HttpGet(RouteAlquiler.GetById)]
-        public Task<Alquileres.Alquiler> BuscarAlquiler(int id)
+        public Alquileres.Alquiler BuscarAlquiler(int id)
         {
             try
             {
-                var objAlquiler = _alquileresClient.ApiV1AlquilerAsync(id);
+                var objAlquiler = _alquileresClient.ApiV1AlquilerAsync(id).Result;
                 return objAlquiler;
             }
             catch (ApiException ex)
