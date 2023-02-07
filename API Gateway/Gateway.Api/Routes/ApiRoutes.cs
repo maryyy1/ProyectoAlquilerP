@@ -50,6 +50,7 @@
             public const string GetById = Base + "/recarga/search";
             // Write
             public const string Create = Base + "/recarga/create";
+            public const string Recargar = Base + "/recarga/recargar";
             public const string Update = Base + "/recarga/update";
             public const string Delete = Base + "/recarga/delete";
 

@@ -79,7 +79,7 @@ namespace Gateway.Api.NewFolder
         }
 
         [HttpPost(RouteAlquiler.Alquilar)]
-        public async void Alquilar(RegistrarAlquilerRequest request)
+        public async void Alquilar(RegistrarRecargaRequest request)
         {
             try
             {

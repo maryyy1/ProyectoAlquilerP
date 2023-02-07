@@ -1,6 +1,12 @@
-﻿namespace Gateway.Aplicacion.Alquileres.Request
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Gateway.Aplicacion.Alquileres.Request
 {
-    public class RegistrarAlquilerRequest
+    public class RegistrarRecargaRequest
     {
         public int IdAlquiler { get; set; }        
         public int IdCliente { get; set; }

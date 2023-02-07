@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using static Gateway.Api.Routes.ApiRoutes;
 using Recargas = Gateway.Aplicacion.RecargasClient;
+using Clientes = Gateway.Aplicacion.ClientesClient;
+using Gateway.Aplicacion.Alquileres.Request;
 
 namespace Gateway.Api.Controllers
 {
@@ -12,10 +14,12 @@ namespace Gateway.Api.Controllers
     public class RecargaController : ControllerBase
     {
         private readonly Recargas.IClient _recargasClient;
+        private readonly Clientes.IClient _clientesClient;
 
-        public RecargaController(Recargas.IClient recargasClient)
+        public RecargaController(Recargas.IClient recargasClient,Clientes.IClient clientesClient)
         {
             _recargasClient = recargasClient;
+            _clientesClient = clientesClient;
         }
 
         [HttpGet(RouteRecarga.GetAll)]
@@ -53,6 +57,27 @@ namespace Gateway.Api.Controllers
             {
                 Log.Error("ApiException: " + ex);
             }
+        }
+
+        [HttpPost(RouteRecarga.Recargar)]
+        public void Recargar(RegistrarRecargaRequest request)
+        {
+            /*
+            try
+            {
+                var cliente = _clientesClient.ApiV1ClienteSearchAsync(request.IdCliente);
+                if (cliente!=null)
+                {
+                    Recargas.Recarga recarga;
+                    recarga.RecCliId = cliente.
+                    _recargasClient.ApiV1RecargaCreateAsync(recarga);
+                }
+                
+            }
+            catch (ApiException ex)
+            {
+                Log.Error("ApiException: " + ex);
+            }*/
         }
 
         [HttpPut(RouteRecarga.Update)]
