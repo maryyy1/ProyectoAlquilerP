@@ -3,7 +3,6 @@ using static Gateway.Api.Routes.ApiRoutes;
 using System.Collections.Generic;
 using Peliculas = Gateway.Aplicacion.PeliculasClient;
 using Gateway.Aplicacion.PeliculasClient;
-using System.Threading.Tasks;
 using Serilog;
 using System;
 
@@ -20,18 +19,18 @@ namespace Gateway.Api.Controllers
         }
 
         [HttpGet(RoutePelicula.GetAll)]
-        public Task<ICollection<Peliculas.Pelicula>> ListarPeliculas()
+        public ICollection<Peliculas.Pelicula> ListarPeliculas()
         {
-            var listaPelicula = _peliculasClient.ApiV1PeliculaAllAsync();
+            var listaPelicula = _peliculasClient.ApiV1PeliculaAllAsync().Result;
             return listaPelicula;
         }
 
         [HttpGet(RoutePelicula.GetById)]
-        public Task<Peliculas.Pelicula> BuscarPelicula(int id)
+        public Peliculas.Pelicula BuscarPelicula(int id)
         {
             try
             {
-                var objPelicula = _peliculasClient.ApiV1PeliculaAsync(id);
+                var objPelicula = _peliculasClient.ApiV1PeliculaAsync(id).Result;
                 return objPelicula;
             }
             catch (ApiException ex)

@@ -3,7 +3,6 @@ using static Gateway.Api.Routes.ApiRoutes;
 using System.Collections.Generic;
 using Clientes = Gateway.Aplicacion.ClientesClient;
 using Gateway.Aplicacion.ClientesClient;
-using System.Threading.Tasks;
 using Serilog;
 using System;
 
@@ -20,18 +19,18 @@ namespace Gateway.Api.Controllers
         }
 
         [HttpGet(RouteCliente.GetAll)]
-        public Task<ICollection<Clientes.Cliente>> ListarPeliculas()
+        public ICollection<Clientes.Cliente> ListarPeliculas()
         {
-            var listaCliente = _clientesClient.ApiV1ClienteAllAsync();
+            var listaCliente = _clientesClient.ApiV1ClienteAllAsync().Result;
             return listaCliente;
         }
 
         [HttpGet(RouteCliente.GetById)]
-        public Task<Clientes.Cliente> BuscarCliente(int id)
+        public Clientes.Cliente BuscarCliente(int id)
         {
             try
             {
-                var objCliente = _clientesClient.ApiV1ClienteAsync(id);
+                var objCliente = _clientesClient.ApiV1ClienteAsync(id).Result;
                 return objCliente;
             }
             catch (ApiException ex)
