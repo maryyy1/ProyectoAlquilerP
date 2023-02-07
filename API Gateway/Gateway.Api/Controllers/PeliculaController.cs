@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using static Gateway.Api.Routes.ApiRoutes;
-using System.Collections.Generic;
-using Peliculas = Gateway.Aplicacion.PeliculasClient;
-using Gateway.Aplicacion.PeliculasClient;
+﻿using Gateway.Aplicacion.PeliculasClient;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
-using System;
+using System.Collections.Generic;
+using static Gateway.Api.Routes.ApiRoutes;
+using Peliculas = Gateway.Aplicacion.PeliculasClient;
 
 namespace Gateway.Api.Controllers
 {
@@ -35,7 +34,7 @@ namespace Gateway.Api.Controllers
             }
             catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
 
             return null;
@@ -51,7 +50,7 @@ namespace Gateway.Api.Controllers
             }
             catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
         }
 
@@ -62,9 +61,9 @@ namespace Gateway.Api.Controllers
             {
                 _peliculasClient.ApiV1PeliculaUpdateAsync(pelicula);
             }
-            catch (Exception ex)
+            catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
         }
 
@@ -75,9 +74,9 @@ namespace Gateway.Api.Controllers
             {
                 _peliculasClient.ApiV1PeliculaDeleteAsync(id);
             }
-            catch (Exception ex)
+            catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
         }
     }

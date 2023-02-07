@@ -1,11 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using static Gateway.Api.Routes.ApiRoutes;
-using System.Collections.Generic;
-using Recargas = Gateway.Aplicacion.RecargasClient;
-using Gateway.Aplicacion.RecargasClient;
-using System.Threading.Tasks;
+﻿using Gateway.Aplicacion.RecargasClient;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
-using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using static Gateway.Api.Routes.ApiRoutes;
+using Recargas = Gateway.Aplicacion.RecargasClient;
 
 namespace Gateway.Api.Controllers
 {
@@ -36,7 +35,7 @@ namespace Gateway.Api.Controllers
             }
             catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
 
             return null;
@@ -52,7 +51,7 @@ namespace Gateway.Api.Controllers
             }
             catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
         }
 
@@ -63,9 +62,9 @@ namespace Gateway.Api.Controllers
             {
                 _recargasClient.ApiV1RecargaUpdateAsync(recarga);
             }
-            catch (Exception ex)
+            catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
         }
 
@@ -76,9 +75,9 @@ namespace Gateway.Api.Controllers
             {
                 _recargasClient.ApiV1RecargaDeleteAsync(id);
             }
-            catch (Exception ex)
+            catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
         }
     }

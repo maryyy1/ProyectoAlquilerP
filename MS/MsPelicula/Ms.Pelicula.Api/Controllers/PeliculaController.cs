@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using Ms.Pelicula.Api.Routes;
 using Ms.Pelicula.Aplicacion.Pelicula;
 using Serilog;
 using System;

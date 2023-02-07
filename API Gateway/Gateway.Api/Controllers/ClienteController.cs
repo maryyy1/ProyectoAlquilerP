@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using static Gateway.Api.Routes.ApiRoutes;
-using System.Collections.Generic;
-using Clientes = Gateway.Aplicacion.ClientesClient;
-using Gateway.Aplicacion.ClientesClient;
+﻿using Gateway.Aplicacion.ClientesClient;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
-using System;
+using System.Collections.Generic;
+using static Gateway.Api.Routes.ApiRoutes;
+using Clientes = Gateway.Aplicacion.ClientesClient;
 
 namespace Gateway.Api.Controllers
 {
@@ -35,7 +34,7 @@ namespace Gateway.Api.Controllers
             }
             catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
 
             return null;
@@ -51,7 +50,7 @@ namespace Gateway.Api.Controllers
             }
             catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
         }
 
@@ -62,9 +61,9 @@ namespace Gateway.Api.Controllers
             {
                 _clientesClient.ApiV1ClienteUpdateAsync(cliente);
             }
-            catch (Exception ex)
+            catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
         }
 
@@ -75,9 +74,9 @@ namespace Gateway.Api.Controllers
             {
                 _clientesClient.ApiV1ClienteDeleteAsync(id);
             }
-            catch (Exception ex)
+            catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
         }
     }

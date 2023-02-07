@@ -1,7 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using MongoDB.Driver;
-using Ms.Recarga.Api.Routes;
 using Ms.Recarga.Aplicacion.Recarga;
 using Serilog;
 using System;

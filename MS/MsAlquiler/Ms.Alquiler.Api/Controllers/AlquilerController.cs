@@ -3,7 +3,6 @@ using Ms.Alquiler.Aplicacion.Alquiler;
 using Serilog;
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 using static Ms.Alquiler.Api.Routes.ApiRoutes;
 using dominio = Ms.Alquiler.Dominio.Entidades;
 

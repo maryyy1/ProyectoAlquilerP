@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using MongoDB.Driver;
 using Ms.Pelicula.Aplicacion.Director;
-using static Ms.Pelicula.Api.Routes.ApiRoutes;
-using System.Collections.Generic;
-using dominio = Ms.Pelicula.Dominio.Entidades;
-using Ms.Pelicula.Api.Routes;
-using System;
 using Serilog;
+using System;
+using System.Collections.Generic;
+using static Ms.Pelicula.Api.Routes.ApiRoutes;
+using dominio = Ms.Pelicula.Dominio.Entidades;
 
 namespace Ms.Pelicula.Api.Controllers
 {

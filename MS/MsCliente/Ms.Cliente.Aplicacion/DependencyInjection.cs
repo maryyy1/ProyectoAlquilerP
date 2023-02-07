@@ -2,11 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using MongoDB.Driver;
-using Release.MongoDB.Repository;
-using Ms.Cliente.Infraestructura;
-using dominio = Ms.Cliente.Dominio.Entidades;
 using Ms.Cliente.Aplicacion.Cliente;
 using Ms.Cliente.Aplicacion.Tarjeta;
+using Ms.Cliente.Infraestructura;
+using Release.MongoDB.Repository;
+using dominio = Ms.Cliente.Dominio.Entidades;
 
 namespace Ms.Cliente.Aplicacion
 {

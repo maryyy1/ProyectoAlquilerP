@@ -1,14 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using System.Collections.Generic;
-using MongoDB.Driver;
-using dominio = Ms.Alquiler.Dominio.Entidades;
-using Ms.Alquiler.Api.Routes;
 using Ms.Alquiler.Aplicacion.DetalleAlquiler;
-using static Ms.Alquiler.Api.Routes.ApiRoutes;
-using Ms.Alquiler.Dominio.Entidades;
-using System;
 using Serilog;
+using System;
+using System.Collections.Generic;
+using static Ms.Alquiler.Api.Routes.ApiRoutes;
+using dominio = Ms.Alquiler.Dominio.Entidades;
 
 namespace Ms.Alquiler.Api.Controllers
 {

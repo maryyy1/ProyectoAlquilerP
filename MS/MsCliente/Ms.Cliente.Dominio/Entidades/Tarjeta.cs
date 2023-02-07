@@ -2,9 +2,6 @@
 using MongoDB.Bson.Serialization.Attributes;
 using Release.MongoDB.Repository;
 using Release.MongoDB.Repository.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Ms.Cliente.Dominio.Entidades
 {

@@ -1,5 +1,4 @@
 ﻿using MongoDB.Driver;
-using Ms.Pelicula.Dominio.Entidades;
 using Release.MongoDB.Repository;
 using Serilog;
 using System;
