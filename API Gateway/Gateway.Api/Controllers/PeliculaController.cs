@@ -35,7 +35,7 @@ namespace Gateway.Api.Controllers
             }
             catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
 
             return null;
@@ -51,7 +51,7 @@ namespace Gateway.Api.Controllers
             }
             catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
         }
 
@@ -62,9 +62,9 @@ namespace Gateway.Api.Controllers
             {
                 _peliculasClient.ApiV1PeliculaUpdateAsync(pelicula);
             }
-            catch (Exception ex)
+            catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
         }
 
@@ -75,9 +75,9 @@ namespace Gateway.Api.Controllers
             {
                 _peliculasClient.ApiV1PeliculaDeleteAsync(id);
             }
-            catch (Exception ex)
+            catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
         }
     }

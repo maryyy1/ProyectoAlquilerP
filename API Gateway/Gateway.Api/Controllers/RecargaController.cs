@@ -36,7 +36,7 @@ namespace Gateway.Api.Controllers
             }
             catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
 
             return null;
@@ -52,7 +52,7 @@ namespace Gateway.Api.Controllers
             }
             catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
         }
 
@@ -63,9 +63,9 @@ namespace Gateway.Api.Controllers
             {
                 _recargasClient.ApiV1RecargaUpdateAsync(recarga);
             }
-            catch (Exception ex)
+            catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
         }
 
@@ -76,9 +76,9 @@ namespace Gateway.Api.Controllers
             {
                 _recargasClient.ApiV1RecargaDeleteAsync(id);
             }
-            catch (Exception ex)
+            catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
             }
         }
     }
