@@ -18,7 +18,7 @@ namespace Gateway.Api.NewFolder
         private readonly Clientes.IClient _clientesClient;
         private readonly Peliculas.IClient _peliculasClient;
 
-        public AlquilerController(Alquileres.IClient alquileresClient,Clientes.IClient clientesClient,
+        public AlquilerController(Alquileres.IClient alquileresClient, Clientes.IClient clientesClient,
                                     Peliculas.IClient peliculasClient)
         {
             try
@@ -45,6 +45,10 @@ namespace Gateway.Api.NewFolder
             {
                 Log.Error("ApiException: " + ex);
             }
+            catch (AggregateException ex)
+            {
+                Log.Error("AggregateException: " + ex);
+            }
 
             return null;
         }
@@ -59,7 +63,11 @@ namespace Gateway.Api.NewFolder
             }
             catch (ApiException ex)
             {
-                Log.Error("Exception: " + ex);
+                Log.Error("ApiException: " + ex);
+            }
+            catch (AggregateException ex)
+            {
+                Log.Error("AggregateException: " + ex);
             }
 
             return null;
@@ -84,11 +92,11 @@ namespace Gateway.Api.NewFolder
             try
             {
                 Alquileres.Alquiler alquiler = new Alquiler();
-                Alquileres.DetalleAlquiler detAlquiler =  new DetalleAlquiler();
+                Alquileres.DetalleAlquiler detAlquiler = new DetalleAlquiler();
                 var cliente = await _clientesClient.ApiV1ClienteSearchAsync(request.IdCliente);
-                
-                var pelicula = await _peliculasClient.ApiV1PeliculaSearchAsync(request.IdPelicula); 
-                if(cliente!=null && pelicula != null)
+
+                var pelicula = await _peliculasClient.ApiV1PeliculaSearchAsync(request.IdPelicula);
+                if (cliente != null && pelicula != null)
                 {
                     detAlquiler.DetAlqIdPel = pelicula.PelId;
                     alquiler.AlqIdCli = cliente.CliId;
@@ -98,8 +106,8 @@ namespace Gateway.Api.NewFolder
                     alquiler.AlqFecFin = request.AlqFecFin;
                     alquiler.AlqEnlace = request.AlqEnlace;
                     await _alquileresClient.ApiV1AlquilerCreateAsync(alquiler);
-                    await _alquileresClient.ApiV1DetalleAlquilerCreateAsync(detAlquiler);                    
-                }              
+                    await _alquileresClient.ApiV1DetalleAlquilerCreateAsync(detAlquiler);
+                }
             }
             catch (ApiException ex)
             {

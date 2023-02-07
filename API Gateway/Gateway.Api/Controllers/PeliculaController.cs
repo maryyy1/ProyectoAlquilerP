@@ -1,6 +1,7 @@
 ﻿using Gateway.Aplicacion.PeliculasClient;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
+using System;
 using System.Collections.Generic;
 using static Gateway.Api.Routes.ApiRoutes;
 using Peliculas = Gateway.Aplicacion.PeliculasClient;
@@ -20,8 +21,21 @@ namespace Gateway.Api.Controllers
         [HttpGet(RoutePelicula.GetAll)]
         public ICollection<Peliculas.Pelicula> ListarPeliculas()
         {
-            var listaPelicula = _peliculasClient.ApiV1PeliculaAllAsync().Result;
-            return listaPelicula;
+            try
+            {
+                var listaPelicula = _peliculasClient.ApiV1PeliculaAllAsync().Result;
+                return listaPelicula;
+            }
+            catch (ApiException ex)
+            {
+                Log.Error("ApiException: " + ex);
+            }
+            catch (AggregateException ex)
+            {
+                Log.Error("AggregateException: " + ex);
+            }
+
+            return null;
         }
 
         [HttpGet(RoutePelicula.GetById)]
@@ -35,6 +49,10 @@ namespace Gateway.Api.Controllers
             catch (ApiException ex)
             {
                 Log.Error("ApiException: " + ex);
+            }
+            catch (AggregateException ex)
+            {
+                Log.Error("AggregateException: " + ex);
             }
 
             return null;

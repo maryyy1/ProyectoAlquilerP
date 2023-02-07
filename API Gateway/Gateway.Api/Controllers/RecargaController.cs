@@ -2,11 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using static Gateway.Api.Routes.ApiRoutes;
 using Recargas = Gateway.Aplicacion.RecargasClient;
 using Clientes = Gateway.Aplicacion.ClientesClient;
 using Gateway.Aplicacion.Alquileres.Request;
+using System;
 
 namespace Gateway.Api.Controllers
 {
@@ -16,30 +16,47 @@ namespace Gateway.Api.Controllers
         private readonly Recargas.IClient _recargasClient;
         private readonly Clientes.IClient _clientesClient;
 
-        public RecargaController(Recargas.IClient recargasClient,Clientes.IClient clientesClient)
+        public RecargaController(Recargas.IClient recargasClient, Clientes.IClient clientesClient)
         {
             _recargasClient = recargasClient;
             _clientesClient = clientesClient;
         }
 
         [HttpGet(RouteRecarga.GetAll)]
-        public Task<ICollection<Recargas.Recarga>> ListarRecargas()
-        {
-            var listaRecarga= _recargasClient.ApiV1RecargaAllAsync();
-            return listaRecarga;
-        }
-
-        [HttpGet(RouteRecarga.GetById)]
-        public Task<Recargas.Recarga> BuscarRecarga(int id)
+        public ICollection<Recargas.Recarga> ListarRecargas()
         {
             try
             {
-                var objRecarga = _recargasClient.ApiV1RecargaSearchAsync(id);
+                var listaRecarga = _recargasClient.ApiV1RecargaAllAsync().Result;
+                return listaRecarga;
+            }
+            catch (ApiException ex)
+            {
+                Log.Error("ApiException: " + ex);
+            }
+            catch (AggregateException ex)
+            {
+                Log.Error("AggregateException: " + ex);
+            }
+
+            return null;
+        }
+
+        [HttpGet(RouteRecarga.GetById)]
+        public Recargas.Recarga BuscarRecarga(int id)
+        {
+            try
+            {
+                var objRecarga = _recargasClient.ApiV1RecargaSearchAsync(id).Result;
                 return objRecarga;
             }
             catch (ApiException ex)
             {
                 Log.Error("ApiException: " + ex);
+            }
+            catch (AggregateException ex)
+            {
+                Log.Error("AggregateException: " + ex);
             }
 
             return null;
