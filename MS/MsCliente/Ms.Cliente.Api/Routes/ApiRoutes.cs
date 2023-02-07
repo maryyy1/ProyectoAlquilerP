@@ -10,7 +10,7 @@
         {
             // Read
             public const string GetAll = Base + "/cliente/all";
-            public const string GetById = Base + "/cliente/{id}";
+            public const string GetById = Base + "/cliente/search";
 
             // Write
             public const string Create = Base + "/cliente/create";
@@ -22,7 +22,7 @@
         {
             // Read
             public const string GetAll = Base + "/tarjeta/all";
-            public const string GetById = Base + "/tarjeta/{id}";
+            public const string GetById = Base + "/tarjeta/search";
 
             // Write
             public const string Create = Base + "/tarjeta/create";

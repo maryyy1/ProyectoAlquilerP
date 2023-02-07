@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using Release.MongoDB.Repository;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -14,42 +15,92 @@ namespace Ms.Alquiler.Aplicacion.DetalleAlquiler
         private readonly IBaseRepository<dominio.DetalleAlquiler> _detalleAlquilerR;
 
         public DetalleAlquilerService(ICollectionContext<dominio.DetalleAlquiler> detalleAlquiler,
-                                IBaseRepository<dominio.DetalleAlquiler> clienteR)
+                                IBaseRepository<dominio.DetalleAlquiler> detalleAlquilerR)
         {
             _detalleAlquiler = detalleAlquiler;
-            _detalleAlquilerR = clienteR;
+            _detalleAlquilerR = detalleAlquilerR;
         }
 
         public List<dominio.DetalleAlquiler> ListarDetallesAlquileres()
         {
-            Expression<Func<dominio.DetalleAlquiler, bool>> filter = s => s.esEliminado == false;
-            var items = (_detalleAlquiler.Context().FindAsync(filter, null).Result).ToList();
-            return items;
+            try
+            {
+                Expression<Func<dominio.DetalleAlquiler, bool>> filter = s => s.esEliminado == false;
+                var items = (_detalleAlquiler.Context().FindAsync(filter, null).Result).ToList();
+                return items;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         public bool RegistrarDetalleAlquiler(dominio.DetalleAlquiler detalleAlquiler)
         {
-            detalleAlquiler.esEliminado = false;
-            detalleAlquiler.fechaCreacion = DateTime.Now;
-            detalleAlquiler.esActivo = true;
+            try
+            {
+                detalleAlquiler.esEliminado = false;
+                detalleAlquiler.fechaCreacion = DateTime.Now;
+                detalleAlquiler.esActivo = true;
 
-            _detalleAlquilerR.InsertOne(detalleAlquiler);
+                _detalleAlquilerR.InsertOne(detalleAlquiler);
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return false;
         }
 
-        public dominio.DetalleAlquiler DetalleAlquiler (int idDetalleAlquiler)
+        public dominio.DetalleAlquiler BuscarDetalleAlquiler (int idDetalleAlquiler)
         {
-            Expression<Func<dominio.DetalleAlquiler, bool>> filter = s => s.esEliminado == false && s.IdDetalleAlquiler == idDetalleAlquiler;
-            var item = (_detalleAlquiler.Context().FindAsync(filter, null).Result).FirstOrDefault();
-            return item;
+            try
+            {
+                Expression<Func<dominio.DetalleAlquiler, bool>> filter = s => s.esEliminado == false && s.DetAlqId == idDetalleAlquiler;
+                var item = (_detalleAlquiler.Context().FindAsync(filter, null).Result).FirstOrDefault();
+                return item;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
-        public void Eliminar(int idDetalleAlquiler)
+        public bool ModificarDetalleAlquiler(dominio.DetalleAlquiler detalleAlquiler)
         {
-            Expression<Func<dominio.DetalleAlquiler, bool>> filter = s => s.esEliminado == false && s.IdDetalleAlquiler == idDetalleAlquiler;
-            var item = (_detalleAlquiler.Context().FindOneAndDelete(filter, null));
+            try
+            {
+                dominio.DetalleAlquiler detAlqActual = BuscarDetalleAlquiler(detalleAlquiler.DetAlqId);
+                if (detAlqActual != null)
+                {
+                    detAlqActual.DetAlqIdPel = detalleAlquiler.DetAlqIdPel;
+                    detAlqActual.fechaModificacion = detalleAlquiler.fechaModificacion;
+                    _detalleAlquilerR.UpdateOne(detAlqActual.id, detAlqActual);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return false;
+        }
 
+        public void EliminarDetalleAlquiler(int idDetalleAlquiler)
+        {
+            try
+            {
+                Expression<Func<dominio.DetalleAlquiler, bool>> filter = s => s.esEliminado == false && s.DetAlqId == idDetalleAlquiler;
+                var item = (_detalleAlquiler.Context().FindOneAndDelete(filter, null));
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
         }
     }
 }

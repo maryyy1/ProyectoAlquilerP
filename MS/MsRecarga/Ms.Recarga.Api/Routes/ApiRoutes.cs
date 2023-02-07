@@ -10,7 +10,7 @@
         {
             // Read
             public const string GetAll = Base + "/recarga/all";
-            public const string GetById = Base + "/recarga/{id}";
+            public const string GetById = Base + "/recarga/search";
 
             // Write
             public const string Create = Base + "/recarga/create";

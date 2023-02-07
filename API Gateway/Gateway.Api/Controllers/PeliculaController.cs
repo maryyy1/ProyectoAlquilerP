@@ -30,7 +30,7 @@ namespace Gateway.Api.Controllers
         {
             try
             {
-                var objPelicula = _peliculasClient.ApiV1PeliculaAsync(id).Result;
+                var objPelicula = _peliculasClient.ApiV1PeliculaSearchAsync(id).Result;
                 return objPelicula;
             }
             catch (ApiException ex)

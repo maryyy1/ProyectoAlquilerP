@@ -44,17 +44,16 @@
         }
       }
     },
-    "/api/v1/cliente/{id}": {
+    "/api/v1/cliente/search": {
       "get": {
         "tags": [
           "Cliente"
         ],
-        "operationId": "cliente",
+        "operationId": "search",
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -262,17 +261,16 @@
         }
       }
     },
-    "/api/v1/tarjeta/{id}": {
+    "/api/v1/tarjeta/search": {
       "get": {
         "tags": [
           "Tarjeta"
         ],
-        "operationId": "tarjeta",
+        "operationId": "search2",
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"

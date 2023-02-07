@@ -74,31 +74,20 @@ namespace Ms.Pelicula.Api.Controllers
             return null;
         }
 
-        //[HttpPut(RouteCategoria.Update)]
-        //public ActionResult<dominio.Categoria> ModificarCategoria(dominio.Categoria producto)
-        //{
-        //    #region Conexión a base de datos
-        //    var client = new MongoClient("mongodb://localhost:27017");
-        //    var database = client.GetDatabase("TDB_productos");
-        //    var collection = database.GetCollection<dominio.Categoria>("producto");
-        //    #endregion
-
-        //    collection.FindOneAndReplace(x => x._id == producto._id, producto);
-
-        //    //var oldCategoria = collection.Find(x => x.IdCategoria == producto.IdCategoria).FirstOrDefault();
-        //    //oldCategoria.Nombre = producto.Nombre;
-        //    //oldCategoria.Precio = producto.Precio;
-        //    //oldCategoria.Cantidad = producto.Cantidad;
-        //    //collection.ReplaceOne(x=>x.IdCategoria == oldCategoria.IdCategoria, oldCategoria);
-
-
-        //    //Categoria productoModificado = listaCategoria.Single(x => x.IdCategoria == producto.IdCategoria);
-        //    //productoModificado.Nombre = producto.Nombre;
-        //    //productoModificado.Cantidad = producto.Cantidad;
-        //    //productoModificado.Precio= producto.Precio;
-        //    //return CreatedAtAction("ModificarCategoria", productoModificado);
-        //    return Ok();
-        //}
+        [HttpPut(RouteDirector.Update)]
+        public ActionResult<dominio.Director> ModificarDirector(dominio.Director director)
+        {
+            try
+            {
+                _service.ModificarDirector(director);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
+        }
 
         [HttpDelete(RouteDirector.Delete)]
         public ActionResult<dominio.Director> EliminarDirector(int id)

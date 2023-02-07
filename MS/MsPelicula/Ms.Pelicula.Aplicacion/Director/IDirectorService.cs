@@ -8,6 +8,7 @@ namespace Ms.Pelicula.Aplicacion.Director
         List<dominio.Director> ListarDirectores();
         bool RegistrarDirector(dominio.Director director);
         dominio.Director BuscarDirector(int idDirector);
+        bool ModificarDirector(dominio.Director director);
         void EliminarDirector(int idDirector);
     }
 }

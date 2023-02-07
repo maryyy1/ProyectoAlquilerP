@@ -15,5 +15,6 @@ namespace Ms.Recarga.Dominio.Entidades
 
         public double RecMonto { get; set; }
 
+        public int RecCliId { get; set; }
     }
 }

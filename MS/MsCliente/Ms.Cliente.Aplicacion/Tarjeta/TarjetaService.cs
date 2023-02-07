@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using Release.MongoDB.Repository;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -22,55 +23,88 @@ namespace Ms.Cliente.Aplicacion.Tarjeta
 
         public List<dominio.Tarjeta> ListarTarjetas()
         {
-            Expression<Func<dominio.Tarjeta, bool>> filter = s => s.esEliminado == false;
-            var items = (_tarjeta.Context().FindAsync(filter, null).Result).ToList();
+            try
+            {
+                Expression<Func<dominio.Tarjeta, bool>> filter = s => s.esEliminado == false;
+                var items = (_tarjeta.Context().FindAsync(filter, null).Result).ToList();
 
-            return items;
+                return items;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         public bool RegistrarTarjeta(dominio.Tarjeta tarjeta)
         {
-            tarjeta.esEliminado = false;
-            tarjeta.fechaCreacion =DateTime.Now;
-            tarjeta.esActivo = true;
-            _tarjetaR.InsertOne(tarjeta);
+            try
+            {
+                tarjeta.esEliminado = false;
+                tarjeta.fechaCreacion = DateTime.Now;
+                tarjeta.esActivo = true;
+                _tarjetaR.InsertOne(tarjeta);
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return false;
         }
 
         public dominio.Tarjeta BuscarTarjeta(int idTarjeta)
         {
-            Expression<Func<dominio.Tarjeta, bool>> filter = s => s.esEliminado == false && s.TarId == idTarjeta;
-            var item = (_tarjeta.Context().FindAsync(filter, null).Result).FirstOrDefault();
-            return item;
+            try
+            {
+                Expression<Func<dominio.Tarjeta, bool>> filter = s => s.esEliminado == false && s.TarId == idTarjeta;
+                var item = (_tarjeta.Context().FindAsync(filter, null).Result).FirstOrDefault();
+                return item;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         public bool ModificarTarjeta(dominio.Tarjeta tarjeta)
         {
-            Expression<Func<dominio.Tarjeta, bool>> filter = s => s.esEliminado == false && s.TarId == tarjeta.TarId;
-            var tarjetaActual = (_tarjeta.Context().FindAsync(filter, null).Result).FirstOrDefault();
-            //    collection.FindOneAndReplace(x => x._id == producto._id, producto);
-
-            //    //var oldProducto = collection.Find(x => x.IdProducto == producto.IdProducto).FirstOrDefault();
-            //    //oldProducto.Nombre = producto.Nombre;
-            //    //oldProducto.Precio = producto.Precio;
-            //    //oldProducto.Cantidad = producto.Cantidad;
-            //    //collection.ReplaceOne(x=>x.IdProducto == oldProducto.IdProducto, oldProducto);
-
-
-            //    //Producto productoModificado = listaProducto.Single(x => x.IdProducto == producto.IdProducto);
-            //    //productoModificado.Nombre = producto.Nombre;
-            //    //productoModificado.Cantidad = producto.Cantidad;
-            //    //productoModificado.Precio= producto.Precio;
-            //_peliculaR.UpdateOne();
-            return true;
+            try
+            {
+                dominio.Tarjeta tarjetaActual = BuscarTarjeta(tarjeta.TarId);
+                if (tarjetaActual != null)
+                {
+                    tarjetaActual.TarNumero = tarjeta.TarNumero;
+                    tarjetaActual.TarFecVen = tarjeta.TarFecVen;
+                    tarjetaActual.TarCvv = tarjeta.TarCvv;
+                    tarjetaActual.TarSaldo = tarjeta.TarSaldo;
+                    tarjetaActual.TarTipo = tarjeta.TarTipo;
+                    tarjetaActual.fechaModificacion = tarjeta.fechaModificacion;
+                    _tarjetaR.UpdateOne(tarjetaActual.id, tarjetaActual);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return false;
         }
 
         public void EliminarTarjeta(int idTarjeta)
         {
-            Expression<Func<dominio.Tarjeta, bool>> filter = s => s.esEliminado == false && s.TarId == idTarjeta;
-            var item = (_tarjeta.Context().FindOneAndDelete(filter, null));
-            
+            try
+            {
+                Expression<Func<dominio.Tarjeta, bool>> filter = s => s.esEliminado == false && s.TarId == idTarjeta;
+                var item = (_tarjeta.Context().FindOneAndDelete(filter, null));
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }            
         }
     }
 }

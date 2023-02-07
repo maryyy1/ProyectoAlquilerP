@@ -50,7 +50,7 @@ namespace Ms.Alquiler.Api.Controllers
         {
             try
             {
-                var objDetalleAlquiler = _service.DetalleAlquiler(id);
+                var objDetalleAlquiler = _service.BuscarDetalleAlquiler(id);
                 return objDetalleAlquiler;
 
             }
@@ -76,38 +76,27 @@ namespace Ms.Alquiler.Api.Controllers
             return null;
         }
 
-        //[HttpPut(RouteProducto.Update)]
-        //public ActionResult<dominio.Producto> ModificarProducto(dominio.Producto producto)
-        //{
-        //    #region Conexión a base de datos
-        //    var client = new MongoClient("mongodb://localhost:27017");
-        //    var database = client.GetDatabase("TDB_productos");
-        //    var collection = database.GetCollection<dominio.Producto>("producto");
-        //    #endregion
-
-        //    collection.FindOneAndReplace(x => x._id == producto._id, producto);
-
-        //    //var oldProducto = collection.Find(x => x.IdProducto == producto.IdProducto).FirstOrDefault();
-        //    //oldProducto.Nombre = producto.Nombre;
-        //    //oldProducto.Precio = producto.Precio;
-        //    //oldProducto.Cantidad = producto.Cantidad;
-        //    //collection.ReplaceOne(x=>x.IdProducto == oldProducto.IdProducto, oldProducto);
-
-
-        //    //Producto productoModificado = listaProducto.Single(x => x.IdProducto == producto.IdProducto);
-        //    //productoModificado.Nombre = producto.Nombre;
-        //    //productoModificado.Cantidad = producto.Cantidad;
-        //    //productoModificado.Precio= producto.Precio;
-        //    //return CreatedAtAction("ModificarProducto", productoModificado);
-        //    return Ok();
-        //}
+        [HttpPut(RouteDetalleAlquiler.Update)]
+        public ActionResult<dominio.Alquiler> ModificarDetalleAlquiler(dominio.DetalleAlquiler detalleAlquiler)
+        {
+            try
+            {
+                _service.ModificarDetalleAlquiler(detalleAlquiler);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
+        }
 
         [HttpDelete(RouteDetalleAlquiler.Delete)]
         public ActionResult<dominio.DetalleAlquiler> EliminarDetalleAlquiler(int id)
         {
             try
             {
-                _service.Eliminar(id);
+                _service.EliminarDetalleAlquiler(id);
                 return Ok(id);
             }
             catch (Exception ex)

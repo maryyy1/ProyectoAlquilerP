@@ -31,7 +31,7 @@ namespace Gateway.Api.Controllers
         {
             try
             {
-                var objRecarga = _recargasClient.ApiV1RecargaAsync(id);
+                var objRecarga = _recargasClient.ApiV1RecargaSearchAsync(id);
                 return objRecarga;
             }
             catch (ApiException ex)

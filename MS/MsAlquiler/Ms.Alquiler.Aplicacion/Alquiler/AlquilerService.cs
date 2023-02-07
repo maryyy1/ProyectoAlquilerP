@@ -1,5 +1,7 @@
-﻿using MongoDB.Driver;
+﻿using Microsoft.Extensions.Logging;
+using MongoDB.Driver;
 using Release.MongoDB.Repository;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -22,55 +24,86 @@ namespace Ms.Alquiler.Aplicacion.Alquiler
 
         public List<dominio.Alquiler> ListarAlquileres()
         {
-            Expression<Func<dominio.Alquiler, bool>> filter = s => s.esEliminado == false;
-            var items = (_alquiler.Context().FindAsync(filter, null).Result).ToList();
-            return items;
+            try
+            {
+                Expression<Func<dominio.Alquiler, bool>> filter = s => s.esEliminado == false;
+                var items = (_alquiler.Context().FindAsync(filter, null).Result).ToList();
+                return items;
+            }
+            catch(Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         public bool RegistrarAlquiler(dominio.Alquiler alquiler)
         {
-            alquiler.esEliminado = false;
-            alquiler.fechaCreacion = DateTime.Now;
-            alquiler.esActivo = true;
+            try
+            {
+                alquiler.esEliminado = false;
+                alquiler.fechaCreacion = DateTime.Now;
+                alquiler.esActivo = true;
 
-            _alquilerR.InsertOne(alquiler);
+                _alquilerR.InsertOne(alquiler);
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return false;
         }
 
         public dominio.Alquiler BuscarAlquiler (int idAlquiler)
         {
-            Expression<Func<dominio.Alquiler, bool>> filter = s => s.esEliminado == false && s.IdAlquiler == idAlquiler;
-            var item = (_alquiler.Context().FindAsync(filter, null).Result).FirstOrDefault();
-            return item;
+            try
+            {
+                Expression<Func<dominio.Alquiler, bool>> filter = s => s.esEliminado == false && s.AlqId == idAlquiler;
+                var item = (_alquiler.Context().FindAsync(filter, null).Result).FirstOrDefault();
+                return item;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         public void EliminarAlquiler(int idAlquiler)
         {
-            Expression<Func<dominio.Alquiler, bool>> filter = s => s.esEliminado == false && s.IdAlquiler == idAlquiler;
-            var item = (_alquiler.Context().FindOneAndDelete(filter, null));
-
+            try
+            {
+                Expression<Func<dominio.Alquiler, bool>> filter = s => s.esEliminado == false && s.AlqId == idAlquiler;
+                var item = (_alquiler.Context().FindOneAndDelete(filter, null));
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
         }
 
         public bool ModificarAlquiler(dominio.Alquiler alquiler)
         {
-            Expression<Func<dominio.Alquiler, bool>> filter = s => s.esEliminado == false && s.IdAlquiler == alquiler.IdAlquiler;
-            var peliculaActual = (_alquiler.Context().FindAsync(filter, null).Result).FirstOrDefault();
-            //    collection.FindOneAndReplace(x => x._id == producto._id, producto);
-
-            //    //var oldProducto = collection.Find(x => x.IdProducto == producto.IdProducto).FirstOrDefault();
-            //    //oldProducto.Nombre = producto.Nombre;
-            //    //oldProducto.Precio = producto.Precio;
-            //    //oldProducto.Cantidad = producto.Cantidad;
-            //    //collection.ReplaceOne(x=>x.IdProducto == oldProducto.IdProducto, oldProducto);
-
-
-            //    //Producto productoModificado = listaProducto.Single(x => x.IdProducto == producto.IdProducto);
-            //    //productoModificado.Nombre = producto.Nombre;
-            //    //productoModificado.Cantidad = producto.Cantidad;
-            //    //productoModificado.Precio= producto.Precio;
-            //_peliculaR.UpdateOne();
-            return true;
+            try
+            {
+                dominio.Alquiler alquilerActual = BuscarAlquiler(alquiler.AlqId);
+                if (alquilerActual != null)
+                {
+                    alquilerActual.AlqFecIni = alquiler.AlqFecIni;
+                    alquilerActual.AlqFecFin = alquiler.AlqFecFin;
+                    alquilerActual.AlqEnlace = alquiler.AlqEnlace;
+                    alquilerActual.fechaModificacion = alquiler.fechaModificacion;
+                    _alquilerR.UpdateOne(alquilerActual.id, alquilerActual);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return false;
         }
     }
 }

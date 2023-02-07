@@ -9,14 +9,14 @@ namespace Ms.Pelicula.Dominio.Entidades
     [BsonIgnoreExtraElements]
     public class Director : EntityToLower<ObjectId>
     { 
-        public int IdDirector { get; set; }
+        public int DirId { get; set; }
 
-        public string Nombre { get; set; }
+        public string DirNombre { get; set; }
 
-        public string ApePaterno { get; set; }
+        public string DirApePat { get; set; }
 
-        public string ApeMaterno { get; set; }
+        public string DirApeMat { get; set; }
 
-        public int Sexo { get; set; }
+        public int DirSexo { get; set; }
     }
 }

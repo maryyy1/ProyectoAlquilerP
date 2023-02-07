@@ -112,6 +112,38 @@
         },
         "responses": {
           "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/v1/alquiler/update": {
+      "put": {
+        "tags": [
+          "Alquiler"
+        ],
+        "operationId": "update",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Alquiler"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Alquiler"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Alquiler"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
             "description": "Success",
             "content": {
               "text/plain": {
@@ -303,6 +335,55 @@
         }
       }
     },
+    "/api/v1/detalleAlquiler/update": {
+      "put": {
+        "tags": [
+          "DetalleAlquiler"
+        ],
+        "operationId": "update2",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DetalleAlquiler"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DetalleAlquiler"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/DetalleAlquiler"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Alquiler"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Alquiler"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Alquiler"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/detalleAlquiler/delete": {
       "delete": {
         "tags": [
@@ -368,7 +449,7 @@
           "esEliminado": {
             "type": "boolean"
           },
-          "idAlquiler": {
+          "alqId": {
             "type": "integer",
             "format": "int32"
           },
@@ -383,6 +464,10 @@
           "alqEnlace": {
             "type": "string",
             "nullable": true
+          },
+          "alqIdCli": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       },
@@ -408,7 +493,11 @@
           "esEliminado": {
             "type": "boolean"
           },
-          "idDetalleAlquiler": {
+          "detAlqId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "detAlqIdPel": {
             "type": "integer",
             "format": "int32"
           }

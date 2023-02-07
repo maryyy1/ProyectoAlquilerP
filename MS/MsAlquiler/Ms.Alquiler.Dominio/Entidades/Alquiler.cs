@@ -12,7 +12,7 @@ namespace Ms.Alquiler.Dominio.Entidades
     [BsonIgnoreExtraElements]
     public class Alquiler : EntityToLower<ObjectId>
     {
-        public int IdAlquiler { get; set; }
+        public int AlqId { get; set; }
 
         public string AlqFecIni { get; set; }
 
@@ -20,7 +20,7 @@ namespace Ms.Alquiler.Dominio.Entidades
 
         public string AlqEnlace { get; set; }
 
-        public int IdCliente { get; set; }
+        public int AlqIdCli { get; set; }
 
     }
 }

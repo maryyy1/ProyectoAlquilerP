@@ -44,17 +44,16 @@
         }
       }
     },
-    "/api/v1/recarga/{id}": {
+    "/api/v1/recarga/search": {
       "get": {
         "tags": [
           "Recarga"
         ],
-        "operationId": "recarga",
+        "operationId": "search",
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -290,6 +289,10 @@
           "recMonto": {
             "type": "number",
             "format": "double"
+          },
+          "recCliId": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       }

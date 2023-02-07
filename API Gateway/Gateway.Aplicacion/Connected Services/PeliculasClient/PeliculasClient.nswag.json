@@ -44,17 +44,16 @@
         }
       }
     },
-    "/api/v1/director/{id}": {
+    "/api/v1/director/search": {
       "get": {
         "tags": [
           "Director"
         ],
-        "operationId": "director",
+        "operationId": "search",
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -91,6 +90,55 @@
           "Director"
         ],
         "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Director"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Director"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Director"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Director"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Director"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Director"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/director/update": {
+      "put": {
+        "tags": [
+          "Director"
+        ],
+        "operationId": "update",
         "requestBody": {
           "content": {
             "application/json": {
@@ -213,17 +261,16 @@
         }
       }
     },
-    "/api/v1/pelicula/{id}": {
+    "/api/v1/pelicula/search": {
       "get": {
         "tags": [
           "Pelicula"
         ],
-        "operationId": "pelicula",
+        "operationId": "search2",
         "parameters": [
           {
             "name": "id",
-            "in": "path",
-            "required": true,
+            "in": "query",
             "schema": {
               "type": "integer",
               "format": "int32"
@@ -308,7 +355,7 @@
         "tags": [
           "Pelicula"
         ],
-        "operationId": "update",
+        "operationId": "update2",
         "requestBody": {
           "content": {
             "application/json": {
@@ -417,23 +464,23 @@
           "esEliminado": {
             "type": "boolean"
           },
-          "idDirector": {
+          "dirId": {
             "type": "integer",
             "format": "int32"
           },
-          "nombre": {
+          "dirNombre": {
             "type": "string",
             "nullable": true
           },
-          "apePaterno": {
+          "dirApePat": {
             "type": "string",
             "nullable": true
           },
-          "apeMaterno": {
+          "dirApeMat": {
             "type": "string",
             "nullable": true
           },
-          "sexo": {
+          "dirSexo": {
             "type": "integer",
             "format": "int32"
           }
@@ -451,20 +498,17 @@
           "machine": {
             "type": "integer",
             "readOnly": true,
-            "format": "int32",
-            "deprecated": true
+            "format": "int32"
           },
           "pid": {
             "type": "integer",
             "readOnly": true,
-            "format": "int32",
-            "deprecated": true
+            "format": "int32"
           },
           "increment": {
             "type": "integer",
             "readOnly": true,
-            "format": "int32",
-            "deprecated": true
+            "format": "int32"
           },
           "creationTime": {
             "type": "string",
@@ -495,19 +539,19 @@
           "esEliminado": {
             "type": "boolean"
           },
-          "idPelicula": {
+          "pelId": {
             "type": "integer",
             "format": "int32"
           },
-          "nombre": {
+          "pelNombre": {
             "type": "string",
             "nullable": true
           },
-          "duracion": {
+          "pelDuracion": {
             "type": "string",
             "nullable": true
           },
-          "precio": {
+          "pelPrecio": {
             "type": "number",
             "format": "double"
           }

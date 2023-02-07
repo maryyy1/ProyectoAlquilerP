@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using Release.MongoDB.Repository;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -22,55 +23,89 @@ namespace Ms.Cliente.Aplicacion.Cliente
 
         public List<dominio.Cliente> ListarClientes()
         {
-            Expression<Func<dominio.Cliente, bool>> filter = s => s.esEliminado == false;
-            var items = (_cliente.Context().FindAsync(filter, null).Result).ToList();
+            try
+            {
+                Expression<Func<dominio.Cliente, bool>> filter = s => s.esEliminado == false;
+                var items = (_cliente.Context().FindAsync(filter, null).Result).ToList();
 
-            return items;
+                return items;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         public bool RegistrarCliente(dominio.Cliente cliente)
         {
-            cliente.esEliminado = false;
-            cliente.fechaCreacion =DateTime.Now;
-            cliente.esActivo = true;
-            _clienteR.InsertOne(cliente);
+            try
+            {
+                cliente.esEliminado = false;
+                cliente.fechaCreacion = DateTime.Now;
+                cliente.esActivo = true;
+                _clienteR.InsertOne(cliente);
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return false;
         }
 
         public dominio.Cliente BuscarCliente(int idCliente)
         {
-            Expression<Func<dominio.Cliente, bool>> filter = s => s.esEliminado == false && s.CliId == idCliente;
-            var item = (_cliente.Context().FindAsync(filter, null).Result).FirstOrDefault();
-            return item;
+            try
+            {
+                Expression<Func<dominio.Cliente, bool>> filter = s => s.esEliminado == false && s.CliId == idCliente;
+                var item = (_cliente.Context().FindAsync(filter, null).Result).FirstOrDefault();
+                return item;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         public bool ModificarCliente(dominio.Cliente cliente)
         {
-            Expression<Func<dominio.Cliente, bool>> filter = s => s.esEliminado == false && s.CliId == cliente.CliId;
-            var clienteActual = (_cliente.Context().FindAsync(filter, null).Result).FirstOrDefault();
-            //    collection.FindOneAndReplace(x => x._id == producto._id, producto);
-
-            //    //var oldProducto = collection.Find(x => x.IdProducto == producto.IdProducto).FirstOrDefault();
-            //    //oldProducto.Nombre = producto.Nombre;
-            //    //oldProducto.Precio = producto.Precio;
-            //    //oldProducto.Cantidad = producto.Cantidad;
-            //    //collection.ReplaceOne(x=>x.IdProducto == oldProducto.IdProducto, oldProducto);
-
-
-            //    //Producto productoModificado = listaProducto.Single(x => x.IdProducto == producto.IdProducto);
-            //    //productoModificado.Nombre = producto.Nombre;
-            //    //productoModificado.Cantidad = producto.Cantidad;
-            //    //productoModificado.Precio= producto.Precio;
-            //_peliculaR.UpdateOne();
-            return true;
+            try
+            {
+                dominio.Cliente clienteActual = BuscarCliente(cliente.CliId);
+                if (clienteActual != null)
+                {
+                    clienteActual.CliDni = cliente.CliDni;
+                    clienteActual.CliNombre = cliente.CliNombre;
+                    clienteActual.CliApePat = cliente.CliApePat;
+                    clienteActual.CliApeMat = cliente.CliApeMat;
+                    clienteActual.CliCorreo = cliente.CliCorreo;
+                    clienteActual.CliSexo = cliente.CliSexo;
+                    clienteActual.fechaModificacion = cliente.fechaModificacion;
+                    _clienteR.UpdateOne(clienteActual.id, clienteActual);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return false;
         }
 
         public void EliminarCliente(int idCliente)
         {
-            Expression<Func<dominio.Cliente, bool>> filter = s => s.esEliminado == false && s.CliId == idCliente;
-            var item = (_cliente.Context().FindOneAndDelete(filter, null));
-            
+            try
+            {
+                Expression<Func<dominio.Cliente, bool>> filter = s => s.esEliminado == false && s.CliId == idCliente;
+                var item = (_cliente.Context().FindOneAndDelete(filter, null));
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }            
         }
     }
 }

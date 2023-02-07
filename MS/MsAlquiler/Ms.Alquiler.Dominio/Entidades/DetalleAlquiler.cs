@@ -12,8 +12,8 @@ namespace Ms.Alquiler.Dominio.Entidades
     [BsonIgnoreExtraElements]
     public class DetalleAlquiler : EntityToLower<ObjectId>
     {
-        public int IdDetalleAlquiler { get; set; }
+        public int DetAlqId { get; set; }
 
-        public int IdPelicula { get; set; }
+        public int DetAlqIdPel { get; set; }
     }
 }

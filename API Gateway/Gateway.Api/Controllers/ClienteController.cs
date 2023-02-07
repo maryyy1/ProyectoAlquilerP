@@ -30,7 +30,7 @@ namespace Gateway.Api.Controllers
         {
             try
             {
-                var objCliente = _clientesClient.ApiV1ClienteAsync(id).Result;
+                var objCliente = _clientesClient.ApiV1ClienteSearchAsync(id).Result;
                 return objCliente;
             }
             catch (ApiException ex)

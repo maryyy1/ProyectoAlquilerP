@@ -1,6 +1,7 @@
 ﻿using MongoDB.Driver;
 using Ms.Recarga.Dominio.Entidades;
 using Release.MongoDB.Repository;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -23,54 +24,84 @@ namespace Ms.Recarga.Aplicacion.Recarga
 
         public List<dominio.Recarga> ListarRecargas()
         {
-            Expression<Func<dominio.Recarga, bool>> filter = s => s.esEliminado == false;
-            var items = (_recarga.Context().FindAsync(filter, null).Result).ToList();
-            return items;
+            try
+            {
+                Expression<Func<dominio.Recarga, bool>> filter = s => s.esEliminado == false;
+                var items = (_recarga.Context().FindAsync(filter, null).Result).ToList();
+                return items;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         public bool RegistrarRecarga(dominio.Recarga recarga)
         {
-            recarga.esEliminado = false;
-            recarga.fechaCreacion =DateTime.Now;
-            recarga.esActivo = true;
-            _recargaR.InsertOne(recarga);
+            try
+            {
+                recarga.esEliminado = false;
+                recarga.fechaCreacion = DateTime.Now;
+                recarga.esActivo = true;
+                _recargaR.InsertOne(recarga);
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return false;
         }
 
         public dominio.Recarga BuscarRecarga(int idRecarga)
         {
-            Expression<Func<dominio.Recarga, bool>> filter = s => s.esEliminado == false && s.RecId == idRecarga;
-            var item = (_recarga.Context().FindAsync(filter, null).Result).FirstOrDefault();
-            return item;
+            try
+            {
+                Expression<Func<dominio.Recarga, bool>> filter = s => s.esEliminado == false && s.RecId == idRecarga;
+                var item = (_recarga.Context().FindAsync(filter, null).Result).FirstOrDefault();
+                return item;
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return null;
         }
 
         public bool ModificarRecarga(dominio.Recarga recarga)
         {
-            Expression<Func<dominio.Recarga, bool>> filter = s => s.esEliminado == false && s.RecId == recarga.RecId;
-            var recargaActual = (_recarga.Context().FindAsync(filter, null).Result).FirstOrDefault();
-            //    collection.FindOneAndReplace(x => x._id == producto._id, producto);
-
-            //    //var oldProducto = collection.Find(x => x.IdProducto == producto.IdProducto).FirstOrDefault();
-            //    //oldProducto.Nombre = producto.Nombre;
-            //    //oldProducto.Precio = producto.Precio;
-            //    //oldProducto.Cantidad = producto.Cantidad;
-            //    //collection.ReplaceOne(x=>x.IdProducto == oldProducto.IdProducto, oldProducto);
-
-
-            //    //Producto productoModificado = listaProducto.Single(x => x.IdProducto == producto.IdProducto);
-            //    //productoModificado.Nombre = producto.Nombre;
-            //    //productoModificado.Cantidad = producto.Cantidad;
-            //    //productoModificado.Precio= producto.Precio;
-            //_peliculaR.UpdateOne();
-            return true;
+            try
+            {
+                dominio.Recarga recargaActual = BuscarRecarga(recarga.RecId);
+                if (recargaActual != null)
+                {
+                    recargaActual.RecFecha = recarga.RecFecha;
+                    recargaActual.RecMonto = recarga.RecMonto;
+                    recargaActual.fechaModificacion = recarga.fechaModificacion;
+                    _recargaR.UpdateOne(recargaActual.id, recargaActual);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }
+            return false;
         }
 
         public void EliminarRecarga(int idRecarga)
         {
-            Expression<Func<dominio.Recarga, bool>> filter = s => s.esEliminado == false && s.RecId == idRecarga;
-            var item = (_recarga.Context().FindOneAndDelete(filter, null));
-            
+            try
+            {
+                Expression<Func<dominio.Recarga, bool>> filter = s => s.esEliminado == false && s.RecId == idRecarga;
+                var item = (_recarga.Context().FindOneAndDelete(filter, null));
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Exception: " + ex);
+            }            
         }
     }
 }

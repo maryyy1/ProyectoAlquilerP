@@ -14,7 +14,7 @@ namespace Gateway.Api.NewFolder
     [ApiController]
     public class AlquilerController : ControllerBase
     {
-        private Alquileres.IClient _alquileresClient;
+        private readonly Alquileres.IClient _alquileresClient;
         private readonly Clientes.IClient _clientesClient;
         private readonly Peliculas.IClient _peliculasClient;
 
@@ -85,15 +85,15 @@ namespace Gateway.Api.NewFolder
             {
                 Alquileres.Alquiler alquiler = new Alquiler();
                 Alquileres.DetalleAlquiler detAlquiler =  new DetalleAlquiler();
-                var cliente = await _clientesClient.ApiV1ClienteAsync(request.IdCliente);
+                var cliente = await _clientesClient.ApiV1ClienteSearchAsync(request.IdCliente);
                 
-                var pelicula = await _peliculasClient.ApiV1PeliculaAsync(request.IdPelicula); 
+                var pelicula = await _peliculasClient.ApiV1PeliculaSearchAsync(request.IdPelicula); 
                 if(cliente!=null && pelicula != null)
                 {
-                    detAlquiler.IdPelicula = pelicula.IdPelicula;
-                    alquiler.IdCliente = cliente.CliId;
-                    detAlquiler.IdDetalleAlquiler = request.IdDetAl;
-                    alquiler.IdAlquiler = request.IdAlquiler;
+                    detAlquiler.DetAlqIdPel = pelicula.PelId;
+                    alquiler.AlqIdCli = cliente.CliId;
+                    detAlquiler.DetAlqId = request.IdDetAl;
+                    alquiler.AlqId = request.IdAlquiler;
                     alquiler.AlqFecIni = request.AlqFecIni;
                     alquiler.AlqFecFin = request.AlqFecFin;
                     alquiler.AlqEnlace = request.AlqEnlace;

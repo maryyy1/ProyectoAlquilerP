@@ -9,12 +9,12 @@ namespace Ms.Pelicula.Dominio.Entidades
     [BsonIgnoreExtraElements]
     public class Pelicula : EntityToLower<ObjectId>
     {
-        public int IdPelicula { get; set; }
+        public int PelId { get; set; }
 
-        public string Nombre { get; set; }
+        public string PelNombre { get; set; }
 
-        public string Duracion { get; set; }
+        public string PelDuracion { get; set; }
 
-        public double Precio { get; set; }
+        public double PelPrecio { get; set; }
     }
 }
